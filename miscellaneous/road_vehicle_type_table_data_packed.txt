@@ -1,0 +1,1 @@
+{'HGV average': '0.077', 'HGV Rigid <= 7.5 tonnes': '0.364', 'HGV Rigid 7.5 tonnes - 16 tonnes': '0.178', 'HGV Rigid 16 - 32 tonnes': '0.106', 'HGV Rigid > 32 tonnes': '0.052'}
