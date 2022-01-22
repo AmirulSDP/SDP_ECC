@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 # Database configurations
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://{username}:{password}@{host}:{port}/{database}".format(
-                                            username="wjvqytdsflvzlk",
-                                            password="2d68e917bdfb8952c27be1565da8776f5caf9244a8c60c74c32eb53567fe6f34",
-                                            host="ec2-34-230-133-163.compute-1.amazonaws.com",
+                                            username="zqyqfyguvtfxuk",
+                                            password="7393ce2a2d6dbd07ba5f839ab0a711fd61874ff123d5780a571d04e8ab88fea5",
+                                            host="ec2-34-230-198-12.compute-1.amazonaws.com",
                                             port=5432,
-                                            database="dbpg25t138o77g"
+                                            database="dcngkv91ei80uk"
                                         )
 app.config["SECRET_KEY"] = "6435ca4c14cc707744340f1e2b4db651"
 db=SQLAlchemy(app)

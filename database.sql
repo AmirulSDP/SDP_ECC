@@ -3,7 +3,7 @@ CREATE DATABASE Sdp;
 -- Guidelines:
 -- Calculation Tables => Front end (HTML)
 -- Data Tables        => Back end  (Insert into DB)
--- heroku pg:psql postgresql-triangular-19689 --app amirul-web-app
+-- heroku pg:psql postgresql-curved-16800 --app sdpecc
 
 CREATE TABLE Structure (
     product_subcategory TEXT NOT NULL,
