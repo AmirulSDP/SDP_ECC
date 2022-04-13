@@ -1,0 +1,586 @@
+<html>
+
+<head>
+   <title> Enclosure Calculator </title>
+   <style>
+      table,
+      tr,
+      th,
+      td {
+         border: 5px solid black;
+      }
+
+      table {
+         border-collapse: collapse;
+      }
+
+      #table_2 {
+         margin-top: 3em;
+         margin-bottom: 10em;
+      }
+
+      option {
+         background-color: white;
+      }
+
+      .instruct_2_bgcolor {
+         background-color: yellow;
+      }
+
+      .instruct_3_bgcolor {
+         background-color: rgb(180, 198, 231);
+      }
+
+      .instruct_4_bgcolor {
+         background-color: rgb(248, 203, 173);
+      }
+
+      .instruct_5_bgcolor {
+         background-color: rgb(198, 224, 180);
+      }
+
+      .instruct_6_bgcolor {
+         background-color: rgb(255, 192, 0);
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Enclosure Calculator</h1>
+   <table>
+      <tr>
+         <th>
+            Instructions and Explanation of Calculation
+         </th>
+      </tr>
+      <tr>
+         <td>
+            1. Each row from rows 9 to 20 calculates the total emission from the product's cradle to gate stages
+            and its transport emission, after all necessary information is inputted in that row.<br />
+            &nbsp;&nbsp;&nbsp; <b>For cells that are highlighted, the user is to either select an option from a
+               drop-down list or manually input a value.</b>
+         </td>
+      </tr>
+      <tr>
+         <td class="instruct_2_bgcolor">
+            2. The user is to first select the Product subcategory, then the Product Type followed by the
+            Product Name. Each Product Name is unique with added technical charateristics of the Product Type
+            selected.
+         </td>
+      </tr>
+      <tr>
+         <td class="instruct_3_bgcolor">
+            3. The country of import refers to where the product is imported from to Singapore.
+            This field has to be filled in by the user in order to calculate the marine emission from the
+            product's sea transportation.<br /> &nbsp;&nbsp;&nbsp; Next, Port can be left blank by the user
+            if the user is unsure which port the product is shipped from in the Country of Import.
+         </td>
+      </tr>
+      <tr>
+         <td class="instruct_4_bgcolor">
+            4. In column F, the user has to manually input the amount of the product imported based on the
+            unit specified in column G.<br /> &nbsp;&nbsp;&nbsp; The Global Warming Potential (GWP) of 1
+            functional unit (as shown in column G) of the product is displayed in column H for the user to see.
+         </td>
+      </tr>
+      <tr>
+         <td class="instruct_5_bgcolor">
+            5. Based on the Product subcategory selected by the user, a shipping method is recommended to the
+            user in column I. In column J, the user can select the shipping method recommended or choose a
+            different method.<br /> &nbsp;&nbsp;&nbsp; The calculation of emission will be based on the user's
+            selection in column J. However, if the Product subcategory is cement or steel, the shipping method
+            in column J is fixed as Bulk Carrier.<br /> &nbsp;&nbsp;&nbsp; Sea distance refers to the distance,
+            in nautical miles, between the Port selected by the user and Singapore. The user has the option to
+            choose the average, minimum or maximum sea distance via a drop-down list in column K.
+            <br /> &nbsp;&nbsp;&nbsp; If a Port is selected by the user, all average, minimum and maximum sea
+            distance will be the same value. If Port in that row is left blank, the average, minimum and
+            maximum sea distance will be the average, minimum and<br /> &nbsp;&nbsp;&nbsp; maximum sea distance
+            based on all the Ports for the country selected.
+         </td>
+      </tr>
+      <tr>
+         <td class="instruct_6_bgcolor">
+            6. In column L, the user is to select a Heavy Goods Vehicle (HGV) type based on the amount of
+            weight (in tonnes) it can carry. If users are unsure what type of vehicle is used, they can select
+            the HGV average option.<br /> &nbsp;&nbsp;&nbsp; Column M is the Road Distance to Site in kilometres
+            and users are required to manually type in the estimated port-to-construction site road distance
+            travelled by the product in Singapore.<br /> &nbsp;&nbsp;&nbsp; Column N displays the road emission
+            factor of the HGV type selected in column L.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            7. Column O displays the materials emission:
+            Materials Emission = Amount of Product (Column F) x GWP of 1 functional unit of the Product
+            (Column G).
+         </td>
+      </tr>
+      <tr>
+         <td>
+            8. Column P displays the total emission from sea and land transportation.<br /> &nbsp;&nbsp;&nbsp;
+            Emission from Sea Transportation = Sea Distance x 1.852 (to convert to km) x Amount of Product
+            (Column F)/1000 (to convert to tons) x Marine Emission Factor.<br /> &nbsp;&nbsp;&nbsp;
+            Emission from Land Transportation within Singapore = Amount of Product (Column F)/1000
+            (to convert to tons) x Port to Site Road Distance within Sinagpore in km x Vehicle Emission Factor.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            9. Column Q shows the user the total emission by summing up the values in column O and P.
+         </td>
+      </tr>
+   </table>
+
+   <table id="table_2">
+      <tr>
+         <th>Product subcategory</th>
+         <th>Product Type</th>
+         <th>Product Name</th>
+         <th>Country of Import</th>
+         <th>Port</th>
+         <th>Amount of Product</th>
+         <th>Functional Unit</th>
+         <th>GWP / 1 Functional Unit</th>
+         <th>Recommended Shipping Method</th>
+         <th>Shipping Method</th>
+         <th>Sea Distance/nm</th>
+         <th>Road Vehicle Type</th>
+         <th>Port to Site Road Distance within Singapore (km)</th>
+         <th>Road Emission Factor (KgCO2e/tkm)</th>
+         <th>Material EC (KgCO2e)</th>
+         <th>Sea and Land Transport EC (KgCO2e)</th>
+         <th>Total EC (KgCO2e)</th>
+      </tr>
+
+      {% for i in range(num_of_calc_table_rows) %}
+      <tr>
+         <td class="instruct_2_bgcolor">
+            <select id="product_subcategory_select_list_{{i}}"
+               onchange="product_subcategory_select_list_onchange_event({{i}});" class="instruct_2_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_2_bgcolor">
+            <select id="product_type_select_list_{{i}}" onchange="product_type_select_list_onchange_event({{i}});"
+               class="instruct_2_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_2_bgcolor">
+            <select id="product_name_select_list_{{i}}" onchange="product_name_select_list_onchange_event({{i}});"
+               class="instruct_2_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_3_bgcolor">
+            <select id="country_select_list_{{i}}" onchange="country_select_list_onchange_event({{i}});"
+               class="instruct_3_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_3_bgcolor">
+            <select id="port_select_list_{{i}}" onchange="port_select_list_onchange_event({{i}});"
+               class="instruct_3_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_4_bgcolor">
+            <input type="text" disabled id="product_amount_text_box_{{i}}"
+               oninput="product_amount_text_box_oninput_event({{i}});" class="instruct_4_bgcolor" />
+         </td>
+         <td>
+            <input type="text" disabled id="functional_unit_text_box_{{i}}" />
+         </td>
+         <td>
+            <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
+         </td>
+         <td>
+            <input type="text" disabled id="recommended_shipping_method_text_box_{{i}}" />
+         </td>
+         <td class="instruct_5_bgcolor">
+            <select id="available_shipping_method_select_list_{{i}}"
+               onchange="available_shipping_method_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_5_bgcolor">
+            <select id="average_sea_dist_select_list_{{i}}"
+               onchange="average_sea_dist_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_6_bgcolor">
+            <select id="road_vehicle_type_select_list_{{i}}"
+               onchange="road_vehicle_type_select_list_onchange_event({{i}});" class="instruct_6_bgcolor">
+            </select>
+         </td>
+         <td class="instruct_6_bgcolor">
+            <input type="text" disabled id="port_to_site_dist_text_box_{{i}}"
+               oninput="port_to_site_dist_text_box_oninput_event({{i}});" class="instruct_6_bgcolor" />
+         </td>
+         <td>
+            <input type="text" disabled id="road_emission_factor_text_box_{{i}}" />
+         </td>
+         <td>
+            <input type="text" disabled id="material_ec_text_box_{{i}}" />
+         </td>
+         <td>
+            <input type="text" disabled id="sea_land_transport_ec_text_box_{{i}}" />
+         </td>
+         <td>
+            <input type="text" disabled id="total_ec_text_box_{{i}}" />
+         </td>
+      </tr>
+      {% endfor %}
+   </table>
+
+   <script>
+      var num_of_calc_table_rows = {{ num_of_calc_table_rows }};
+      var structure_table_data_packed = {{ structure_table_data_packed| tojson | safe }};
+      var marine_emission_factor_table_data_packed = {{ marine_emission_factor_table_data_packed| tojson | safe }};
+      var road_vehicle_type_table_data_packed = {{ road_vehicle_type_table_data_packed| tojson | safe }};
+      var country_port_table_data_packed = {{ country_port_table_data_packed| tojson | safe }};
+
+      //Unlock Product Subcategory.
+      function set_calc_default_state() {
+         var product_subcategory_array = Object.keys(structure_table_data_packed);
+         var product_subcategory_select_list_innerHTML = "<option value=''></option>\n";
+         for (var product_subcategory of product_subcategory_array) {
+            product_subcategory_select_list_innerHTML += "<option value='" + product_subcategory + "'>" + product_subcategory + "</option>\n";
+         }
+         for (var i = 0; i < num_of_calc_table_rows; i++) {
+            document.getElementById("product_subcategory_select_list_" + i).innerHTML = product_subcategory_select_list_innerHTML;
+         }
+      }
+      set_calc_default_state();
+
+      // Only executed when product_subcategory is re-selected to be empty.
+      function reset_row_to_default_state(row_num) {
+         document.getElementById("product_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("product_name_select_list_" + row_num).innerHTML = "";
+         document.getElementById("country_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_select_list_" + row_num).innerHTML = "";
+         document.getElementById("product_amount_text_box_" + row_num).value = "";
+         document.getElementById("product_amount_text_box_" + row_num).disabled = true;
+         document.getElementById("functional_unit_text_box_" + row_num).value = "";
+         document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value = "";
+         document.getElementById("recommended_shipping_method_text_box_" + row_num).value = "";
+         document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("material_ec_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock Product Type, Recommended Shipping Method.
+      function product_subcategory_select_list_onchange_event(row_num) {
+         var product_subcategory_selected = document.getElementById("product_subcategory_select_list_" + row_num).value;
+         if (product_subcategory_selected === "") {
+            reset_row_to_default_state(row_num);
+            return;
+         }
+         var product_type_array = Object.keys(structure_table_data_packed[product_subcategory_selected]);
+         var product_type_select_list_innerHTML = "<option value=''></option>\n";
+         for (var product_type of product_type_array) {
+            product_type_select_list_innerHTML += "<option value='" + product_type + "'>" + product_type + "</option>\n";
+         }
+         document.getElementById("product_type_select_list_" + row_num).innerHTML = product_type_select_list_innerHTML;
+         var product_name_array = Object.keys(structure_table_data_packed[product_subcategory_selected][product_type_array[0]]);
+         document.getElementById("recommended_shipping_method_text_box_" + row_num).value = structure_table_data_packed[product_subcategory_selected][product_type_array[0]][product_name_array[0]][2];
+         document.getElementById("product_name_select_list_" + row_num).innerHTML = "";
+         document.getElementById("country_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_select_list_" + row_num).innerHTML = "";
+         document.getElementById("product_amount_text_box_" + row_num).value = "";
+         document.getElementById("product_amount_text_box_" + row_num).disabled = true;
+         document.getElementById("functional_unit_text_box_" + row_num).value = "";
+         document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value = "";
+         document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("material_ec_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock Product Name, Country of Import, Functional Unit, GWP/1 Functional Unit.
+      function product_type_select_list_onchange_event(row_num) {
+         var product_type_selected = document.getElementById("product_type_select_list_" + row_num).value;
+         if (product_type_selected === "") {
+            document.getElementById("product_name_select_list_" + row_num).innerHTML = "";
+            document.getElementById("country_select_list_" + row_num).innerHTML = "";
+            document.getElementById("port_select_list_" + row_num).innerHTML = "";
+            document.getElementById("product_amount_text_box_" + row_num).value = "";
+            document.getElementById("product_amount_text_box_" + row_num).disabled = true;
+            document.getElementById("functional_unit_text_box_" + row_num).value = "";
+            document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value = "";
+            document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+            document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+            document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+            document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+            document.getElementById("material_ec_text_box_" + row_num).value = "";
+            document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+            document.getElementById("total_ec_text_box_" + row_num).value = "";
+            return;
+         }
+         var product_subcategory_selected = document.getElementById("product_subcategory_select_list_" + row_num).value;
+         var product_name_array = Object.keys(structure_table_data_packed[product_subcategory_selected][product_type_selected]);
+         //Don't need empty option tag, cuz dataset got empty product_name for each (product_subcategory, product_type) pair.
+         var product_name_select_list_innerHTML = "";
+         for (var product_name of product_name_array) {
+            product_name_select_list_innerHTML += "<option value='" + product_name + "'>" + product_name + "</option>\n";
+         }
+         document.getElementById("product_name_select_list_" + row_num).innerHTML = product_name_select_list_innerHTML;
+         //Unlock country, functional_unit & gwp_per_funct_unit column, so as to cater for empty product name.
+         var country_array = Object.keys(country_port_table_data_packed);
+         var country_select_list_innerHTML = "<option value=''></option>\n";
+         for (var country of country_array) {
+            country_select_list_innerHTML += "<option value='" + country + "'>" + country + "</option>\n";
+         }
+         document.getElementById("country_select_list_" + row_num).innerHTML = country_select_list_innerHTML;
+         document.getElementById("functional_unit_text_box_" + row_num).value = structure_table_data_packed[product_subcategory_selected][product_type_selected][product_name_array[0]][0];
+         document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value = structure_table_data_packed[product_subcategory_selected][product_type_selected][product_name_array[0]][1];
+         document.getElementById("port_select_list_" + row_num).innerHTML = "";
+         document.getElementById("product_amount_text_box_" + row_num).value = "";
+         document.getElementById("product_amount_text_box_" + row_num).disabled = true;
+         document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("material_ec_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock nothing.
+      function product_name_select_list_onchange_event(row_num) {
+         //Don't need to check for empty string since dataset got empty product_name for each (product_subcategory, product_type) pair.
+         var product_name_selected = document.getElementById("product_name_select_list_" + row_num).value;
+         var product_subcategory_selected = document.getElementById("product_subcategory_select_list_" + row_num).value;
+         var product_type_selected = document.getElementById("product_type_select_list_" + row_num).value;
+         document.getElementById("country_select_list_" + row_num).value = "";
+         document.getElementById("functional_unit_text_box_" + row_num).value = structure_table_data_packed[product_subcategory_selected][product_type_selected][product_name_selected][0];
+         document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value = structure_table_data_packed[product_subcategory_selected][product_type_selected][product_name_selected][1];
+         document.getElementById("port_select_list_" + row_num).innerHTML = "";
+         document.getElementById("product_amount_text_box_" + row_num).value = "";
+         document.getElementById("product_amount_text_box_" + row_num).disabled = true;
+         document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("material_ec_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock Port, Amount of Product.  
+      function country_select_list_onchange_event(row_num) {
+         var country_selected = document.getElementById("country_select_list_" + row_num).value;
+         if (country_selected === "") {
+            document.getElementById("port_select_list_" + row_num).innerHTML = "";
+            document.getElementById("product_amount_text_box_" + row_num).value = "";
+            document.getElementById("product_amount_text_box_" + row_num).disabled = true;
+            document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+            document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+            document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+            document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+            document.getElementById("material_ec_text_box_" + row_num).value = "";
+            document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+            document.getElementById("total_ec_text_box_" + row_num).value = "";
+            return;
+         }
+
+         var port_array = Object.keys(country_port_table_data_packed[country_selected]);
+         var port_select_list_innerHTML = "<option value=''></option>\n";
+         for (var port of port_array) {
+            port_select_list_innerHTML += "<option value='" + port + "'>" + port + "</option>\n";
+         }
+         document.getElementById("port_select_list_" + row_num).innerHTML = port_select_list_innerHTML;
+         document.getElementById("product_amount_text_box_" + row_num).value = "";
+         document.getElementById("product_amount_text_box_" + row_num).disabled = false;
+         document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("material_ec_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock nothing.
+      function port_select_list_onchange_event(row_num) {
+         document.getElementById("product_amount_text_box_" + row_num).value = "";
+         document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("material_ec_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock Shipping Method, Material EC.
+      function product_amount_text_box_oninput_event(row_num) {
+         var product_amount = document.getElementById("product_amount_text_box_" + row_num).value;
+         if (!/^\d+(\.\d+)?$/.test(product_amount)) {
+            document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
+            document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+            document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+            document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+            document.getElementById("material_ec_text_box_" + row_num).value = "Bad product amount input.";
+            document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+            document.getElementById("total_ec_text_box_" + row_num).value = "";
+            return;
+         }
+         var product_subcategory_selected = document.getElementById("product_subcategory_select_list_" + row_num).value;
+         var product_type_selected = document.getElementById("product_type_select_list_" + row_num).value;
+         var product_name_selected = document.getElementById("product_name_select_list_" + row_num).value;
+         var available_shipping_method_array = structure_table_data_packed[product_subcategory_selected][product_type_selected][product_name_selected][3];
+         var available_shipping_method_select_list_innerHTML = "<option value=''></option>\n";
+         for (var available_shipping_method of available_shipping_method_array) {
+            available_shipping_method_select_list_innerHTML += "<option value='" + available_shipping_method + "'>" + available_shipping_method + "</option>\n";
+         }
+         document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = available_shipping_method_select_list_innerHTML;
+         var gwp_per_funct_unit = document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value;
+         document.getElementById("material_ec_text_box_" + row_num).value = product_amount * gwp_per_funct_unit;
+         //Reset others
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock Sea Distance.
+      function available_shipping_method_select_list_onchange_event(row_num) {
+         var available_shipping_method_selected = document.getElementById("available_shipping_method_select_list_" + row_num).value;
+         if (available_shipping_method_selected === "") {
+            document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
+            document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+            document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+            document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+            document.getElementById("total_ec_text_box_" + row_num).value = "";
+            return;
+         }
+         var country_selected = document.getElementById("country_select_list_" + row_num).value;
+         var port_selected = document.getElementById("port_select_list_" + row_num).value;
+         var average_sea_dist_select_list_innerHTML = "<option value=''></option>\n";
+         if (port_selected === "") {
+            var count = 0;
+            var sum_sea_dist = 0;
+            var min_sea_dist = Infinity;
+            var max_sea_dist = 0;
+            for (port in country_port_table_data_packed[country_selected]) {
+               var current_sea_dist = parseFloat(country_port_table_data_packed[country_selected][port]);
+               if (current_sea_dist < min_sea_dist) {
+                  min_sea_dist = current_sea_dist;
+               }
+               if (current_sea_dist > max_sea_dist) {
+                  max_sea_dist = current_sea_dist;
+               }
+               sum_sea_dist += current_sea_dist;
+               count++;
+            }
+            var average_sea_dist = sum_sea_dist / count;
+            average_sea_dist_select_list_innerHTML += "<option value='" + average_sea_dist + "'>Average Sea Distance: " + average_sea_dist + " nm</option>\n";
+            average_sea_dist_select_list_innerHTML += "<option value='" + min_sea_dist + "'>Minimum Sea Distance: " + min_sea_dist + " nm</option>\n";
+            average_sea_dist_select_list_innerHTML += "<option value='" + max_sea_dist + "'>Maximum Sea Distance: " + max_sea_dist + " nm</option>\n";
+         } else {
+            var average_sea_dist = country_port_table_data_packed[country_selected][port_selected];
+            average_sea_dist_select_list_innerHTML += "<option value='" + average_sea_dist + "'>Average Sea Distance: " + average_sea_dist + " nm</option>\n";
+            average_sea_dist_select_list_innerHTML += "<option value='" + average_sea_dist + "'>Minimum Sea Distance: " + average_sea_dist + " nm</option>\n";
+            average_sea_dist_select_list_innerHTML += "<option value='" + average_sea_dist + "'>Maximum Sea Distance: " + average_sea_dist + " nm</option>\n";
+         }
+         document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = average_sea_dist_select_list_innerHTML;
+         //Reset others
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock Road Vehicle Type.
+      function average_sea_dist_select_list_onchange_event(row_num) {
+         var average_sea_dist_selected = document.getElementById("average_sea_dist_select_list_" + row_num).value;
+         if (average_sea_dist_selected === "") {
+            document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+            document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+            document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+            document.getElementById("total_ec_text_box_" + row_num).value = "";
+            return;
+         }
+
+         var road_vehicle_type_select_list_innerHTML = "<option value=''></option>\n";
+         for (road_vehicle_type in road_vehicle_type_table_data_packed) {
+            road_vehicle_type_select_list_innerHTML += "<option value='" + road_vehicle_type_table_data_packed[road_vehicle_type] + "'>" + road_vehicle_type + "</option>\n";
+         }
+         document.getElementById("road_vehicle_type_select_list_" + row_num).innerHTML = road_vehicle_type_select_list_innerHTML;
+         //Reset others
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Unlock Port to Site Road and Road Emission Factor.
+      function road_vehicle_type_select_list_onchange_event(row_num) {
+         var road_emission_factor = document.getElementById("road_vehicle_type_select_list_" + row_num).value;
+         if (road_emission_factor === "") {
+            document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+            document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = true;
+            document.getElementById("road_emission_factor_text_box_" + row_num).value = "";
+            document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+            document.getElementById("total_ec_text_box_" + row_num).value = "";
+            return;
+         }
+         document.getElementById("port_to_site_dist_text_box_" + row_num).value = "";
+         document.getElementById("port_to_site_dist_text_box_" + row_num).disabled = false;
+         document.getElementById("road_emission_factor_text_box_" + row_num).value = road_emission_factor;
+         //Reset others
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
+         document.getElementById("total_ec_text_box_" + row_num).value = "";
+      }
+
+      //Performs the Final Calculation: Sea & Land, Total EC.
+      function port_to_site_dist_text_box_oninput_event(row_num) {
+         var port_to_site_dist = document.getElementById("port_to_site_dist_text_box_" + row_num).value;
+         if (!/^\d+(\.\d+)?$/.test(port_to_site_dist)) {
+            document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "Bad distance input.";
+            document.getElementById("total_ec_text_box_" + row_num).value = "Bad distance input.";
+            return;
+         }
+         var sea_emission = parseFloat(document.getElementById("average_sea_dist_select_list_" + row_num).value) * 1.852 * (parseFloat(document.getElementById("product_amount_text_box_" + row_num).value) / 1000) * marine_emission_factor_table_data_packed[document.getElementById("available_shipping_method_select_list_" + row_num).value];
+         var land_emission = (parseFloat(document.getElementById("product_amount_text_box_" + row_num).value) / 1000) * parseFloat(port_to_site_dist) * parseFloat(document.getElementById("road_vehicle_type_select_list_" + row_num).value);
+         var sea_land_total_emission = sea_emission + land_emission;
+         document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = sea_land_total_emission;
+         document.getElementById("total_ec_text_box_" + row_num).value = sea_land_total_emission + parseFloat(document.getElementById("material_ec_text_box_" + row_num).value);
+      }
+
+      //If no syntax errors, this message will be printed out.
+      console.log("success");
+   </script>
+</body>
+
+</html>
