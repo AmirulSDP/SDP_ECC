@@ -87,9 +87,9 @@ def structure_calc():
                            country_port_table_data_packed=country_port_table_data_packed)
 
 
-# STRUCTURE CALC-------------------------------------------------------------------------------------------------------
+# plastic CALC-------------------------------------------------------------------------------------------------------
 @app.route("/plastic_calc")
-def structure_calc():
+def plastic_calc():
     if not session.get("name"):
         return redirect("/")
 
@@ -134,7 +134,7 @@ def structure_calc():
 
 # Finishes CALC-------------------------------------------------------------------------------------------------------
 @app.route("/finishes_calc")
-def structure_calc():
+def finishes_calc():
     if not session.get("name"):
         return redirect("/")
 
@@ -179,7 +179,7 @@ def structure_calc():
 
 # STRUCTURE CALC-------------------------------------------------------------------------------------------------------
 @app.route("/enclosure_calc")
-def structure_calc():
+def enclosure_calc():
     if not session.get("name"):
         return redirect("/")
 
@@ -225,7 +225,7 @@ def structure_calc():
 
 # Fittings CALC-------------------------------------------------------------------------------------------------------
 @app.route("/fittings_calc")
-def structure_calc():
+def fittings_calc():
     if not session.get("name"):
         return redirect("/")
 
