@@ -226,7 +226,8 @@
       </tr>
       {% endfor %}
    </table>
-
+<button onclick="calc_total()">Calculate Enclosure total</button>
+        <label id="total_enclosure"> </label>
    <script>
       var num_of_calc_table_rows = {{ num_of_calc_table_rows }};
       var structure_table_data_packed = {{ structure_table_data_packed| tojson | safe }};
@@ -244,6 +245,10 @@
          for (var i = 0; i < num_of_calc_table_rows; i++) {
             document.getElementById("product_subcategory_select_list_" + i).innerHTML = product_subcategory_select_list_innerHTML;
          }
+          localStorage.removeItem("total_enclosure");
+                for(let i = 0; i <= 4; i++){
+                localStorage.removeItem("total_enclosure_"+ i )
+                }
       }
       set_calc_default_state();
 
@@ -561,8 +566,9 @@
          //Reset others
          document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
          document.getElementById("total_ec_text_box_" + row_num).value = "";
-      }
 
+      }
+let total_enclosure = 0;
       //Performs the Final Calculation: Sea & Land, Total EC.
       function port_to_site_dist_text_box_oninput_event(row_num) {
          var port_to_site_dist = document.getElementById("port_to_site_dist_text_box_" + row_num).value;
@@ -576,7 +582,23 @@
          var sea_land_total_emission = sea_emission + land_emission;
          document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = sea_land_total_emission;
          document.getElementById("total_ec_text_box_" + row_num).value = sea_land_total_emission + parseFloat(document.getElementById("material_ec_text_box_" + row_num).value);
+
+      total_enclosure=document.getElementById("total_ec_text_box_"+row_num).value;
+				localStorage.setItem("total_enclosure_"+row_num,total_enclosure+row_num);
+
       }
+      function calc_total() {
+			let total=0;
+
+				for(let i=0;i<=4;i++){
+				if(localStorage.getItem("total_enclosure_"+i)!==null){
+				console.log("total_enclosure_"+i)
+				total+=parseFloat(localStorage.getItem("total_enclosure_"+i));
+				}
+				}
+				localStorage.setItem("total_enclosure",total);
+			document.getElementById("total_enclosure").innerHTML=total;
+				}
 
       //If no syntax errors, this message will be printed out.
       console.log("success");

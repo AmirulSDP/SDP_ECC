@@ -142,6 +142,10 @@ p {
 #card5 {
    background-color: burlywood;
 }
+#card6 {
+   background-color: red;
+   width: 10cm;
+}
 
 a {
    text-decoration: none;

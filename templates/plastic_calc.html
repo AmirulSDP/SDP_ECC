@@ -155,18 +155,35 @@
         {% for i in range(num_of_calc_table_rows) %}
         <tr>
             <td class="instruct_2_bgcolor">
-                <select id="product_subcategory_select_list_{{i}}"
-                    onchange="product_subcategory_select_list_onchange_event({{i}});" class="instruct_2_bgcolor">
+                <select id="product_subcategory_select_list_{{i}}" onchange="handle_change_sub_cat({{i}})"
+                   class="instruct_2_bgcolor">
+                    <option></option>
+                    <option value="PET">PET</option>
+                    <option value="PMMA">PMMA</option>
+                    <option value="Polyamide">Polyamide</option>
+                    <option value="Polycarbonate">Polycarbonate</option>
                 </select>
             </td>
             <td class="instruct_2_bgcolor">
                 <select id="product_type_select_list_{{i}}" onchange="product_type_select_list_onchange_event({{i}});"
                     class="instruct_2_bgcolor">
+                    <option></option>
+                    <option value="test" >test </option>
+                    <option value="test1" >test1 </option>
+                    <option value="test2" >test2 </option>
+                    <option value="test3" >test3 </option>
+                    <option value="test199" >test199 </option>
                 </select>
             </td>
             <td class="instruct_2_bgcolor">
                 <select id="product_name_select_list_{{i}}" onchange="product_name_select_list_onchange_event({{i}});"
                     class="instruct_2_bgcolor">
+                    <option></option>
+                    <option value="Polymer Pellets (Biodegradable, Soluble in water)" >Polymer Pellets (Biodegradable, Soluble in water)</option>
+                    <option value="test1" >test1 </option>
+                    <option value="test2" >test2 </option>
+                    <option value="test3" >test3 </option>
+                    <option value="test199" >test199 </option>
                 </select>
             </td>
             <td class="instruct_3_bgcolor">
@@ -226,7 +243,8 @@
         </tr>
         {% endfor %}
     </table>
-
+<button onclick="calc_total()">Calculate Plastic total</button>
+        <label id="total_plastic"> </label>
     <script>
         var num_of_calc_table_rows = {{ num_of_calc_table_rows }};
         var structure_table_data_packed = {{ structure_table_data_packed| tojson | safe }};
@@ -237,15 +255,35 @@
         //Unlock Product Subcategory.
         function set_calc_default_state() {
             var product_subcategory_array = Object.keys(structure_table_data_packed);
-            var product_subcategory_select_list_innerHTML = "<option value=''></option>\n";
+            /*var product_subcategory_select_list_innerHTML = "<option value=''></option>\n";
             for (var product_subcategory of product_subcategory_array) {
                 product_subcategory_select_list_innerHTML += "<option value='" + product_subcategory + "'>" + product_subcategory + "</option>\n";
             }
+            */
             for (var i = 0; i < num_of_calc_table_rows; i++) {
                 document.getElementById("product_subcategory_select_list_" + i).innerHTML = product_subcategory_select_list_innerHTML;
             }
+            localStorage.removeItem("total_plastic");
+                for(let i = 0; i <= 4; i++){
+                localStorage.removeItem("total_plastic_"+ i )
+                }
         }
         set_calc_default_state();
+        function handle_change_sub_cat(row_num) {
+
+        let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
+        let PET = "<option/> <option> Structural Foam </option>"
+        let PMMA = "<option/> <option> Acrylic Flat Plane-Parallel Panel </option>"
+
+        if (prod_subcat === "PET") {
+        document.getElementById("product_type_select_list_"+ row_num).innerHTML = PET;
+
+        }
+        if (prod_subcat === "PMMA") {
+        document.getElementById("product_type_select_list_"+ row_num).innerHTML = PMMA;
+
+        }
+        }
 
         // Only executed when product_subcategory is re-selected to be empty.
         function reset_row_to_default_state(row_num) {
@@ -562,7 +600,7 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
+let total_plastic = 0;
         //Performs the Final Calculation: Sea & Land, Total EC.
         function port_to_site_dist_text_box_oninput_event(row_num) {
             var port_to_site_dist = document.getElementById("port_to_site_dist_text_box_" + row_num).value;
@@ -576,7 +614,23 @@
             var sea_land_total_emission = sea_emission + land_emission;
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = sea_land_total_emission;
             document.getElementById("total_ec_text_box_" + row_num).value = sea_land_total_emission + parseFloat(document.getElementById("material_ec_text_box_" + row_num).value);
+
+        total_plastic=document.getElementById("total_ec_text_box_"+row_num).value;
+				localStorage.setItem("total_plastic_"+row_num,total_plastic+row_num);
+
         }
+        function calc_total() {
+			let total=0;
+
+				for(let i=0;i<=4;i++){
+				if(localStorage.getItem("total_plastic_"+i)!==null){
+				console.log("total_plastic_"+i)
+				total+=parseFloat(localStorage.getItem("total_plastic_"+i));
+				}
+				}
+				localStorage.setItem("total_plastic",total);
+			document.getElementById("total_plastic").innerHTML=total;
+				}
 
         //If no syntax errors, this message will be printed out.
         console.log("success");

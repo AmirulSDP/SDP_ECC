@@ -268,6 +268,9 @@ def fittings_calc():
                            road_vehicle_type_table_data_packed=road_vehicle_type_table_data_packed,
                            country_port_table_data_packed=country_port_table_data_packed)
 
+@app.route("/total_cal")
+def total_cal():
+    return render_template("total_cal.html")
 
 # @app.route("/plastic_calc")
 # def plastic_calc():
