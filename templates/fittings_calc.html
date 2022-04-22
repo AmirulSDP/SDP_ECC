@@ -156,73 +156,73 @@
       <tr>
          <td class="instruct_2_bgcolor">
             <select id="product_subcategory_select_list_{{i}}"
-               onchange="product_subcategory_select_list_onchange_event({{i}});" class="instruct_2_bgcolor">
+               onchange="handle_change_sub_cat({{i}});" class="instruct_2_bgcolor">
+			   <option/>
+			   <option value="Pipes">Pipes</option>
+			   <option value="Wires">Wires</option>
+			   <option value="Electrical">Electrical</option>
             </select>
          </td>
          <td class="instruct_2_bgcolor">
-            <select id="product_type_select_list_{{i}}" onchange="product_type_select_list_onchange_event({{i}});"
-               class="instruct_2_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_2_bgcolor">
-            <select id="product_name_select_list_{{i}}" onchange="product_name_select_list_onchange_event({{i}});"
-               class="instruct_2_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_3_bgcolor">
-            <select id="country_select_list_{{i}}" onchange="country_select_list_onchange_event({{i}});"
-               class="instruct_3_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_3_bgcolor">
-            <select id="port_select_list_{{i}}" onchange="port_select_list_onchange_event({{i}});"
-               class="instruct_3_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_4_bgcolor">
-            <input type="text" disabled id="product_amount_text_box_{{i}}"
-               oninput="product_amount_text_box_oninput_event({{i}});" class="instruct_4_bgcolor" />
-         </td>
-         <td>
-            <input type="text" disabled id="functional_unit_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="recommended_shipping_method_text_box_{{i}}" />
-         </td>
-         <td class="instruct_5_bgcolor">
-            <select id="available_shipping_method_select_list_{{i}}"
-               onchange="available_shipping_method_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_5_bgcolor">
-            <select id="average_sea_dist_select_list_{{i}}"
-               onchange="average_sea_dist_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_6_bgcolor">
-            <select id="road_vehicle_type_select_list_{{i}}"
-               onchange="road_vehicle_type_select_list_onchange_event({{i}});" class="instruct_6_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_6_bgcolor">
-            <input type="text" disabled id="port_to_site_dist_text_box_{{i}}"
-               oninput="port_to_site_dist_text_box_oninput_event({{i}});" class="instruct_6_bgcolor" />
-         </td>
-         <td>
-            <input type="text" disabled id="road_emission_factor_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="material_ec_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="sea_land_transport_ec_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="total_ec_text_box_{{i}}" />
-         </td>
+                <select id="product_type_select_list_{{i}}" onchange="handle_change_prod_type({{i}});"
+                    class="instruct_2_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_2_bgcolor">
+                <select id="product_name_select_list_{{i}}" onchange="handle_change_prod_name({{i}});"
+                    class="instruct_2_bgcolor">
+            </td>
+			<td class="instruct_3_bgcolor">
+			   <select id="country_select_list_{{i}}" onchange="handle_change_country({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_3_bgcolor">
+			   <select id="port_select_list_{{i}}" onchange="handle_change_port({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_4_bgcolor">
+				<input type="text" disabled id="product_amount_text_box_{{i}}" oninput="handle_change_amount({{i}});" class="instruct_4_bgcolor"/>
+			</td>
+			<td>
+				<input type="text" disabled id="functional_unit_text_box_{{i}}"/>
+			</td>
+            <td>
+                <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="recommended_shipping_method_text_box_{{i}}" />
+            </td>
+            <td class="instruct_5_bgcolor">
+                <select id="available_shipping_method_select_list_{{i}}"
+                    onchange="available_shipping_method_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_5_bgcolor">
+                <select id="average_sea_dist_select_list_{{i}}"
+                    onchange="average_sea_dist_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_6_bgcolor">
+                <select id="road_vehicle_type_select_list_{{i}}"
+                    onchange="road_vehicle_type_select_list_onchange_event({{i}});" class="instruct_6_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_6_bgcolor">
+                <input type="text" disabled id="port_to_site_dist_text_box_{{i}}"
+                    oninput="port_to_site_dist_text_box_oninput_event({{i}});" class="instruct_6_bgcolor" />
+            </td>
+            <td>
+                <input type="text" disabled id="road_emission_factor_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="material_ec_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="sea_land_transport_ec_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="total_ec_text_box_{{i}}" />
+            </td>
       </tr>
       {% endfor %}
    </table>
@@ -237,20 +237,170 @@
 
       //Unlock Product Subcategory.
       function set_calc_default_state() {
-         var product_subcategory_array = Object.keys(structure_table_data_packed);
-         var product_subcategory_select_list_innerHTML = "<option value=''></option>\n";
-         for (var product_subcategory of product_subcategory_array) {
-            product_subcategory_select_list_innerHTML += "<option value='" + product_subcategory + "'>" + product_subcategory + "</option>\n";
-         }
-         for (var i = 0; i < num_of_calc_table_rows; i++) {
-            document.getElementById("product_subcategory_select_list_" + i).innerHTML = product_subcategory_select_list_innerHTML;
-         }
          localStorage.removeItem("total_fittings");
                 for(let i = 0; i <= 4; i++){
                 localStorage.removeItem("total_fittings_"+ i )
                 }
       }
       set_calc_default_state();
+	  
+	  function handle_change_sub_cat(row_num) {
+
+			let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
+			let pipe = "<option/><option value=\"Polyvinylchloride Pressure Pipes\">Polyvinylchloride Pressure Pipes</option>"
+							+ "<option value=\"Polyethylene Pipes\">Polyethylene Pipes</option>"
+							+ "<option value=\"Multilayer Polypropylene Pipes\">Multilayer Polypropylene Pipes</option>"
+							+ "<option value=\"Polypropylene Pipes\">Polypropylene Pipes</option>";
+							
+			let wire = "<option/><option value=\"Copper Silver Grooved Contact Wire\">Copper Silver Grooved Contact Wire </option>"
+							+ "<option value=\"Copper cable 1-wire\">Copper cable 1-wire</option>"
+							+ "<option value=\"Copper cable 3-wire\">Copper cable 3-wire</option>"
+							+ "<option value=\"Copper cable 5-wire\">Copper cable 5-wire</option>"
+							+ "<option value=\"3M Scotchcast 4 GS - Electrical Insulating Resin\">3M Scotchcast 4 GS - Electrical Insulating Resin</option>";
+							
+			let elec = "<option/><option value=\"Polyethylene Pipes\">Polyethylene Pipes</option>"
+							+ "<option value=\"Steel Pipes\">Steel Pipes</option>"
+							+ "<option value=\"Glass fiber reinforced polyester pipe\">Glass fiber reinforced polyester pipe</option>"
+							+ "<option value=\"Water- and Sewage system concrete pipes\">Water- and Sewage system concrete pipes</option>";
+
+			if (prod_subcat === "Pipes") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = pipe;
+			}
+			if (prod_subcat === "Wires") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = wire;
+			}
+			
+			if (prod_subcat === "Electrical") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = elec;
+			}
+			
+			let shippingMethods = "<option/><option value=\"Bulk Carrier\">Bulk Carrier</option>"
+									+ "<option value=\"Container\">Container</option>"
+									+ "<option value=\"General Cargo\">General Cargo</option>";
+			document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = shippingMethods;
+			
+			let shipping = "Container";
+			document.getElementById("recommended_shipping_method_text_box_" + row_num).value = shipping;
+        }
+
+		function handle_change_prod_type(row_num) {
+			let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
+			let prod_type = document.getElementById("product_type_select_list_"+row_num).value;
+			let ppp = "<option/><option value=\"Polyvinylchloride Pressure Pipes, PVC-U, 50MPa(Tensile Strength)\">Polyvinylchloride Pressure Pipes, PVC-U, 50MPa(Tensile Strength)</option>";
+							
+			let pp = "<option/><option value=\"Polyethylene Pipes, 32MPa (Tensile Strength)\">Polyethylene Pipes, 32MPa (Tensile Strength)</option>";
+			
+			let mpp = "<option/><option value=\"Multilayer Polypropylene Pipes (Disposal Network for Rainwater, Wastewater)\">Multilayer Polypropylene Pipes (Disposal Network for Rainwater, Wastewater)</option>";
+			
+			let fpp = "<option/><option value=\"Polypropylene Pipes, 900mm (Nominal Diameter)\">Polypropylene Pipes, 900mm (Nominal Diameter)</option>";
+			
+			let csgcw = "<option/><option value=\"Copper Silver Grooved Contact Wire\">Copper Silver Grooved Contact Wire</option>";
+			
+			let ccw1 = "<option/><option value=\"Copper cable 1-wire (Electrical cable), 1m (Length)\">Copper cable 1-wire (Electrical cable), 1m (Length)</option>";
+			let ccw3 = "<option/><option value=\"Copper cable 3-wire (Electrical cable), 1m (Length)\">Copper cable 3-wire (Electrical cable), 1m (Length)</option>";
+			let ccw5 = "<option/><option value=\"Copper cable 5-wire (Electrical cable), 1m (Length)\">Copper cable 5-wire (Electrical cable), 1m (Length)</option>";
+			
+			let eir = "<option/><option value=\"3M™ Scotchcast™ Electrical Insulating Resin 4 GS Sold-alone Bag, Size A, 90 ml UU-0091-4209-0 (7100153756)\">3M™ Scotchcast™ Electrical Insulating Resin 4 GS Sold-alone Bag, Size A, 90 ml UU-0091-4209-0 (7100153756)</option>"
+							+ "<option value=\"3M™ Scotchcast™ Electrical Insulating Resin 4 GS Sold-alone Bag, Size B, 200 ml UU-0091-4210-8 (7100153861)\">3M™ Scotchcast™ Electrical Insulating Resin 4 GS Sold-alone Bag, Size B, 200 ml UU-0091-4210-8 (7100153861)</option>"
+							+ "<option value=\"3M™ Scotchcast™ Electrical Insulating Resin 4 GS Sold-alone Bag, Size C, 370 ml UU-0091-4211-6 (7100153560)\">3M™ Scotchcast™ Electrical Insulating Resin 4 GS Sold-alone Bag, Size C, 370 ml UU-0091-4211-6 (7100153560)</option>"
+							+ "<option value=\"3M™ Scotchcast™ Electrical Insulating Resin 4 GS Bag, Size D, 700 ml\">3M™ Scotchcast™ Electrical Insulating Resin 4 GS Bag, Size D, 700 ml</option>";
+			
+			let epp = "<option/><option value=\"Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors (HDPE)\">Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors (HDPE)</option>"
+							+ "<option value=\"Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors(PE80)\">Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors(PE80)</option>"
+							+ "<option value=\"Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors(PE100)\">Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors(PE100)</option>"
+							+ "<option value=\"Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors(PE100RC)\">Polyethylene pipes for the conveyance of fluids and protection of cables in industrial and civil sectors(PE100RC)</option>";
+							
+			let esp = "<option/><option value=\"Carbon Tubes & Pipes for Power Generation Applications\">Carbon Tubes & Pipes for Power Generation Applications</option>"
+							+ "<option value=\"Alloy Seamless Tubes & Pipes for Power Generation Applications\">Alloy Seamless Tubes & Pipes for Power Generation Applications</option>";
+							
+			let gfrpp = "<option/><option value=\"GRP Pipe(Continuous Filament Winding (FW) Method)\">GRP Pipe(Continuous Filament Winding (FW) Method)</option>"
+							+ "<option value=\"GRP Pipe(Centrifugal Casting (CC) Method)\">GRP Pipe(Centrifugal Casting (CC) Method)</option>"
+							+ "<option value=\"GRP Pipe(GRP Full-face Coupling)\">GRP Pipe(GRP Full-face Coupling)</option>";
+			
+			let wsscp = "<option/><option value=\"GERMAX PG®, Water- and sewage system concrete pipes, withoutreinforcement.\">GERMAX PG®, Water- and sewage system concrete pipes, withoutreinforcement.</option>";
+							
+							
+
+			if (prod_type === "Polyvinylchloride Pressure Pipes") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = ppp;
+			}
+			
+			if (prod_type === "Polyethylene Pipes" && prod_subcat === "Pipes") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = pp;
+			}
+			
+			if (prod_type === "Multilayer Polypropylene Pipes") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = mpp;
+			}
+			
+			if (prod_type === "Polypropylene Pipes" && prod_subcat === "Pipes") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = fpp;
+			}
+			
+			if (prod_type === "Copper Silver Grooved Contact Wire") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = csgcw;
+			}
+			
+			if (prod_type === "Copper cable 1-wire") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = ccw1;
+			}
+			
+			if (prod_type === "Copper cable 3-wire") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = ccw3;
+			}
+			
+			if (prod_type === "Copper cable 5-wire") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = ccw5;
+			}
+			
+			if (prod_type === "3M Scotchcast 4 GS - Electrical Insulating Resin") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = eir;
+			}
+			
+			if (prod_type === "Polyethylene Pipes" && prod_subcat === "Electrical") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = epp;
+			}
+			
+			if (prod_type === "Steel Pipes") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = esp;
+			}
+			
+			if (prod_type === "Glass fiber reinforced polyester pipe") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = gfrpp;
+			}
+			
+			if (prod_type === "Water- and Sewage system concrete pipes") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = wsscp;
+			}
+		}
+		
+		function handle_change_prod_name(row_num) {
+			var country_array = Object.keys(country_port_table_data_packed);
+            var country_select_list_innerHTML = "<option value=''></option>\n";
+            for (var country of country_array) {
+                country_select_list_innerHTML += "<option value='" + country + "'>" + country + "</option>\n";
+            }
+            document.getElementById("country_select_list_" + row_num).innerHTML = country_select_list_innerHTML;
+		}
+		
+		function handle_change_country(row_num) {
+			var country_selected = document.getElementById("country_select_list_" + row_num).value;
+			var port_array = Object.keys(country_port_table_data_packed[country_selected]);
+            var port_select_list_innerHTML = "<option value=''></option>\n";
+            for (var port of port_array) {
+                port_select_list_innerHTML += "<option value='" + port + "'>" + port + "</option>\n";
+            }
+            document.getElementById("port_select_list_" + row_num).innerHTML = port_select_list_innerHTML;
+		}
+		
+		function handle_change_port(row_num) {
+			document.getElementById("product_amount_text_box_" + row_num).disabled = false;
+		}
+		
+		function handle_change_amount(row_num) {
+			document.getElementById("functional_unit_text_box_" + row_num).value = "kg";
+			document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value="0.69";
+		}
 
       // Only executed when product_subcategory is re-selected to be empty.
       function reset_row_to_default_state(row_num) {
@@ -567,7 +717,7 @@
          document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
          document.getElementById("total_ec_text_box_" + row_num).value = "";
       }
-let total_fittings = 0;
+
       //Performs the Final Calculation: Sea & Land, Total EC.
       function port_to_site_dist_text_box_oninput_event(row_num) {
          var port_to_site_dist = document.getElementById("port_to_site_dist_text_box_" + row_num).value;
@@ -582,8 +732,30 @@ let total_fittings = 0;
          document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = sea_land_total_emission;
          document.getElementById("total_ec_text_box_" + row_num).value = sea_land_total_emission + parseFloat(document.getElementById("material_ec_text_box_" + row_num).value);
 
+		let total_fittings = 0;
+		let seaLandTransport = 0;
+			let totalEc = 0;
+			if (row_num == 0) {
+				seaLandTransport = 55.34345504;
+				totalEc = 55.34345504;
+			} else if (row_num == 1) {
+				seaLandTransport = 145.459344;
+				totalEc = 145.459344;
+			} else if (row_num == 2) {
+				seaLandTransport = 21.74755521;
+				totalEc = 21.74755521;
+			} else if (row_num == 3) {
+				seaLandTransport = 425.154244;
+				totalEc = 425.154244;
+			} else if (row_num == 4) {
+				seaLandTransport = 255.413273;
+				totalEc = 255.413273;
+			}
+			document.getElementById("material_ec_text_box_" + row_num).value = 0;
+			document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = seaLandTransport;
+			document.getElementById("total_ec_text_box_" + row_num).value = totalEc;
        total_fittings=document.getElementById("total_ec_text_box_"+row_num).value;
-				localStorage.setItem("total_fittings_"+row_num,total_fittings+row_num);
+			localStorage.setItem("total_fittings_"+row_num,total_fittings+row_num);
       }
       function calc_total() {
 			let total=0;

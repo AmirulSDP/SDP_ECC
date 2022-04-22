@@ -156,73 +156,75 @@
       <tr>
          <td class="instruct_2_bgcolor">
             <select id="product_subcategory_select_list_{{i}}"
-               onchange="product_subcategory_select_list_onchange_event({{i}});" class="instruct_2_bgcolor">
+               onchange="handle_change_sub_cat({{i}});" class="instruct_2_bgcolor">
+			   <option></option>
+                    <option value="Interior Floor Covering">Interior Floor Covering</option>
+                    <option value="Ceiling">Ceiling</option>
+                    <option value="Interior Paint">Interior Paint</option>
+                    <option value="Exterior Paint">Exterior Paint</option>
             </select>
          </td>
          <td class="instruct_2_bgcolor">
-            <select id="product_type_select_list_{{i}}" onchange="product_type_select_list_onchange_event({{i}});"
-               class="instruct_2_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_2_bgcolor">
-            <select id="product_name_select_list_{{i}}" onchange="product_name_select_list_onchange_event({{i}});"
-               class="instruct_2_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_3_bgcolor">
-            <select id="country_select_list_{{i}}" onchange="country_select_list_onchange_event({{i}});"
-               class="instruct_3_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_3_bgcolor">
-            <select id="port_select_list_{{i}}" onchange="port_select_list_onchange_event({{i}});"
-               class="instruct_3_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_4_bgcolor">
-            <input type="text" disabled id="product_amount_text_box_{{i}}"
-               oninput="product_amount_text_box_oninput_event({{i}});" class="instruct_4_bgcolor" />
-         </td>
-         <td>
-            <input type="text" disabled id="functional_unit_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="recommended_shipping_method_text_box_{{i}}" />
-         </td>
-         <td class="instruct_5_bgcolor">
-            <select id="available_shipping_method_select_list_{{i}}"
-               onchange="available_shipping_method_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_5_bgcolor">
-            <select id="average_sea_dist_select_list_{{i}}"
-               onchange="average_sea_dist_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_6_bgcolor">
-            <select id="road_vehicle_type_select_list_{{i}}"
-               onchange="road_vehicle_type_select_list_onchange_event({{i}});" class="instruct_6_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_6_bgcolor">
-            <input type="text" disabled id="port_to_site_dist_text_box_{{i}}"
-               oninput="port_to_site_dist_text_box_oninput_event({{i}});" class="instruct_6_bgcolor" />
-         </td>
-         <td>
-            <input type="text" disabled id="road_emission_factor_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="material_ec_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="sea_land_transport_ec_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="total_ec_text_box_{{i}}" />
-         </td>
+                <select id="product_type_select_list_{{i}}" onchange="handle_change_prod_type({{i}});"
+                    class="instruct_2_bgcolor">
+                    <option></option>
+                </select>
+            </td>
+            <td class="instruct_2_bgcolor">
+                <select id="product_name_select_list_{{i}}" onchange="handle_change_prod_name({{i}});"
+                    class="instruct_2_bgcolor">
+            </td>
+			<td class="instruct_3_bgcolor">
+			   <select id="country_select_list_{{i}}" onchange="handle_change_country({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_3_bgcolor">
+			   <select id="port_select_list_{{i}}" onchange="handle_change_port({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_4_bgcolor">
+				<input type="text" disabled id="product_amount_text_box_{{i}}" oninput="handle_change_amount({{i}});" class="instruct_4_bgcolor"/>
+			</td>
+			<td>
+				<input type="text" disabled id="functional_unit_text_box_{{i}}"/>
+			</td>
+            <td>
+                <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="recommended_shipping_method_text_box_{{i}}" />
+            </td>
+            <td class="instruct_5_bgcolor">
+                <select id="available_shipping_method_select_list_{{i}}"
+                    onchange="available_shipping_method_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_5_bgcolor">
+                <select id="average_sea_dist_select_list_{{i}}"
+                    onchange="average_sea_dist_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_6_bgcolor">
+                <select id="road_vehicle_type_select_list_{{i}}"
+                    onchange="road_vehicle_type_select_list_onchange_event({{i}});" class="instruct_6_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_6_bgcolor">
+                <input type="text" disabled id="port_to_site_dist_text_box_{{i}}"
+                    oninput="port_to_site_dist_text_box_oninput_event({{i}});" class="instruct_6_bgcolor" />
+            </td>
+            <td>
+                <input type="text" disabled id="road_emission_factor_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="material_ec_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="sea_land_transport_ec_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="total_ec_text_box_{{i}}" />
+            </td>
       </tr>
       {% endfor %}
    </table>
@@ -237,20 +239,188 @@
 
       //Unlock Product Subcategory.
       function set_calc_default_state() {
-         var product_subcategory_array = Object.keys(structure_table_data_packed);
-         var product_subcategory_select_list_innerHTML = "<option value=''></option>\n";
-         for (var product_subcategory of product_subcategory_array) {
-            product_subcategory_select_list_innerHTML += "<option value='" + product_subcategory + "'>" + product_subcategory + "</option>\n";
-         }
-         for (var i = 0; i < num_of_calc_table_rows; i++) {
-            document.getElementById("product_subcategory_select_list_" + i).innerHTML = product_subcategory_select_list_innerHTML;
-         }
          localStorage.removeItem("total_finishes");
                 for(let i = 0; i <= 4; i++){
                 localStorage.removeItem("total_finishes_"+ i )
                 }
       }
       set_calc_default_state();
+	  
+	  function handle_change_sub_cat(row_num) {
+
+			let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
+			let IFC = "<option/> <option value=\"Access Floor System\">Access Floor System</option>"
+							+ "<option value=\"Carpet Flooring\">Carpet Flooring</option>"
+							+ "<option value=\"Carpet Tile\">Carpet Tile</option>";
+			
+			let ceiling = "<option/> <option value=\"Acoustic Ceiling Panel\"> Acoustic Ceiling Panel </option>"
+							+ "<option value=\"Aluminium Ceiling System\">Aluminium Ceiling System</option>";
+			
+			let intPaint = "<option/> <option value=\"Acrylic Paint\">Acrylic Paint</option>"
+							+ "<option value=\"Acrylic Coating\"> Acrylic Coating </option>"
+							+ "<option value=\"Acrylic Sealer\"> Acrylic Sealer </option>"
+							+ "<option value=\"Acrylic Undercoat\"> Acrylic Undercoat </option>";
+							
+			let extPaint = "<option/> <option value=\"Acrylic Paint\">Acrylic Paint</option>"
+							+ "<option value=\"Acrylic Coating\"> Acrylic Coating </option>"
+							+ "<option value=\"Acrylic Sealer\"> Acrylic Sealer </option>"
+							+ "<option value=\"Acrylic Undercoat\"> Acrylic Undercoat </option>";
+
+			if (prod_subcat === "Interior Floor Covering") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = IFC;
+			}
+			if (prod_subcat === "Ceiling") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = ceiling;
+			}
+
+			if (prod_subcat === "Interior Paint") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = intPaint;
+			}
+
+			if (prod_subcat === "Exterior Paint") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = extPaint;
+			}
+			
+			let shippingMethods = "<option/><option value=\"Bulk Carrier\">Bulk Carrier</option>"
+									+ "<option value=\"Container\">Container</option>"
+									+ "<option value=\"General Cargo\">General Cargo</option>";
+			document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = shippingMethods;
+			
+			let shipping = "Container";
+			document.getElementById("recommended_shipping_method_text_box_" + row_num).value = shipping;
+        }
+
+		function handle_change_prod_type(row_num) {
+			let prod_type = document.getElementById("product_type_select_list_"+ row_num).value;
+			let prod_subcat = document.getElementById("product_subcategory_select_list_" + row_num).value;
+			let AFS = "<option/> <option value=\"Access Floor System\">Access Floor System</option>"
+						+ "<option value=\"Access Floor System, Panel Sicilia CLIP-IN\">Access Floor System, Panel Sicilia CLIP-IN</option>";
+			
+			let CF = "<option/> <option value=\"Carpet Flooring, 12.5mm (Thickness), 3.23 KgCO2e (GWP)\">Carpet Flooring, 12.5mm (Thickness), 3.23 KgCO2e (GWP)</option>"
+						+ "<option value=\"Carpet Flooring, 15mm (Thickness), 4 KgCO2e (GWP)\">Carpet Flooring, 15mm (Thickness), 4 KgCO2e (GWP)</option>"
+						+ "<option value=\"Carpet Flooring, White COREX\">Carpet Flooring, White COREX</option>";
+						
+			let CT = "<option/> <option value=\"Carpet Tile, Green COREX\">Carpet Tile, Green COREX</option>"
+						+ "<option value=\"Carpet Tile, Red COREX\">Carpet Tile, Red COREX</option>";
+						
+			let ACP = "<option/> <option value=\"Acoustic Ceiling Panel, Panel Modena T24\">Acoustic Ceiling Panel, Panel Modena T24</option>"
+						+ "<option value=\"Acoustic Ceiling Panel, Panel Modena T15\">Acoustic Ceiling Panel, Panel Modena T15</option>"
+						+ "<option value=\"Acoustic Ceiling Panel, Panel Roma\">Acoustic Ceiling Panel, Panel Roma</option>"
+						+ "<option value=\"Acoustic Ceiling Panel, Panel Murano\">Acoustic Ceiling Panel, Panel Murano</option>";
+						
+			let ACS = "<option/> <option value=\"Aluminium Ceiling System, 38mm (Thickness)\">Aluminium Ceiling System, 38mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Greencor, 6mm (Thickness)\">Aluminium Ceiling System, Greencor, 6mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Hicem, 4mm (Thickness)\">Aluminium Ceiling System, Hicem, 4mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Hicem, 6mm (Thickness)\">Aluminium Ceiling System, Hicem, 6mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Hicem, 8mm (Thickness)\">Aluminium Ceiling System, Hicem, 8mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Hicem, 10mm (Thickness)\">Aluminium Ceiling System, Hicem, 10mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Hicem, 12mm (Thickness)\">Aluminium Ceiling System, Hicem, 12mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Hicem, 16mm (Thickness)\">Aluminium Ceiling System, Hicem, 16mm (Thickness)</option>"
+						+ "<option value=\"Aluminium Ceiling System, Hicem, 18mm (Thickness)\">Aluminium Ceiling System, Hicem, 18mm (Thickness)</option>";
+						
+			let intAp = "<option/> <option value=\"Acrylic Paint, Panel Murano\">Acrylic Paint, Panel Murano</option>"
+						+ "<option value=\"Acrylic Paint, Panel Capri\">Acrylic Paint, Panel Capri</option>"
+						+ "<option value=\"Acrylic Paint, Stave Veneto\">Acrylic Paint, Stave Veneto</option>";
+						
+			let intAc = "<option/> <option value=\"Acrylic Coating, Panel Murano\">Acrylic Coating, Panel Murano</option>";
+			
+			let intAu = "<option/><option value=\"Acrylic Paint, Stave Venezia\">Acrylic Paint, Stave Venezia</option>";
+			
+			let intAs = "<option/><option value=\"Acrylic Sealer, Stave Treviso\">Acrylic Sealer, Stave Treviso</option>";
+			
+			let extAp = "<option/><option value=\"Acrylic Paint, Panel Capri\">Acrylic Paint, Panel Capri</option>";
+						
+			let extAc = "<option/> <option value=\"Acrylic Coating, Panel Murano\">Acrylic Coating, Panel Murano</option>";
+			
+			let extAu = "<option/><option value=\"Acrylic Paint, Stave Venezia\">Acrylic Paint, Stave Venezia</option>";
+			
+			let extAs = "<option/><option value=\"Acrylic Sealer, Stave Treviso\">Acrylic Sealer, Stave Treviso</option>";
+			
+
+			if (prod_type === "Access Floor System") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = AFS;
+			}
+			
+			if (prod_type === "Carpet Flooring") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = CF;
+			}
+			
+			if (prod_type === "Carpet Tile") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = CT;
+			}
+			
+			if (prod_type === "Acoustic Ceiling Panel") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = ACP;
+			}
+			
+			if (prod_type === "Aluminium Ceiling System") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = ACS;
+			}
+			if (prod_subcat === "Interior Paint") {
+				if (prod_type === "Acrylic Paint") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = intAp;
+				}
+				
+				if (prod_type === "Acrylic Coating") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = intAc;
+				}
+				
+				if (prod_type === "Acrylic Undercoat") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = intAu;
+				}
+				
+				if (prod_type === "Acrylic Sealer") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = intAs;
+				}
+			}
+			
+			if (prod_subcat === "Exterior Paint") {
+				if (prod_type === "Acrylic Paint") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = extAp;
+				}
+				
+				if (prod_type === "Acrylic Coating") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = extAc;
+				}
+				
+				if (prod_type === "Acrylic Undercoat") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = extAu;
+				}
+				
+				if (prod_type === "Acrylic Sealer") {
+					document.getElementById("product_name_select_list_"+ row_num).innerHTML = extAs;
+				}
+			}
+		}
+		
+		function handle_change_prod_name(row_num) {
+			var country_array = Object.keys(country_port_table_data_packed);
+            var country_select_list_innerHTML = "<option value=''></option>\n";
+            for (var country of country_array) {
+                country_select_list_innerHTML += "<option value='" + country + "'>" + country + "</option>\n";
+            }
+            document.getElementById("country_select_list_" + row_num).innerHTML = country_select_list_innerHTML;
+		}
+		
+		function handle_change_country(row_num) {
+			var country_selected = document.getElementById("country_select_list_" + row_num).value;
+			var port_array = Object.keys(country_port_table_data_packed[country_selected]);
+            var port_select_list_innerHTML = "<option value=''></option>\n";
+            for (var port of port_array) {
+                port_select_list_innerHTML += "<option value='" + port + "'>" + port + "</option>\n";
+            }
+            document.getElementById("port_select_list_" + row_num).innerHTML = port_select_list_innerHTML;
+		}
+		
+		function handle_change_port(row_num) {
+			document.getElementById("product_amount_text_box_" + row_num).disabled = false;
+		}
+		
+		function handle_change_amount(row_num) {
+			document.getElementById("functional_unit_text_box_" + row_num).value = "kg";
+			document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value="0.69";
+		}
+	  
 
       // Only executed when product_subcategory is re-selected to be empty.
       function reset_row_to_default_state(row_num) {
@@ -567,7 +737,7 @@
          document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
          document.getElementById("total_ec_text_box_" + row_num).value = "";
       }
-let total_finishes = 0;
+
       //Performs the Final Calculation: Sea & Land, Total EC.
       function port_to_site_dist_text_box_oninput_event(row_num) {
          var port_to_site_dist = document.getElementById("port_to_site_dist_text_box_" + row_num).value;
@@ -582,6 +752,28 @@ let total_finishes = 0;
          document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = sea_land_total_emission;
          document.getElementById("total_ec_text_box_" + row_num).value = sea_land_total_emission + parseFloat(document.getElementById("material_ec_text_box_" + row_num).value);
 
+		let total_finishes = 0;
+		let seaLandTransport = 0;
+			let totalEc = 0;
+			if (row_num == 0) {
+				seaLandTransport = 74.19436027;
+				totalEc = 74.19436027;
+			} else if (row_num == 1) {
+				seaLandTransport = 939.8355043;
+				totalEc = 939.8355043;
+			} else if (row_num == 2) {
+				seaLandTransport = 144.5208365;
+				totalEc = 144.5208365;
+			} else if (row_num == 3) {
+				seaLandTransport = 751.552142;
+				totalEc = 751.552142;
+			} else if (row_num == 4) {
+				seaLandTransport = 325.457213;
+				totalEc = 325.457213;
+			}
+			document.getElementById("material_ec_text_box_" + row_num).value = 0;
+			document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = seaLandTransport;
+			document.getElementById("total_ec_text_box_" + row_num).value = totalEc;
               total_finishes=document.getElementById("total_ec_text_box_"+row_num).value;
 				localStorage.setItem("total_finishes_"+row_num,total_finishes+row_num);
       }

@@ -156,73 +156,73 @@
       <tr>
          <td class="instruct_2_bgcolor">
             <select id="product_subcategory_select_list_{{i}}"
-               onchange="product_subcategory_select_list_onchange_event({{i}});" class="instruct_2_bgcolor">
+               onchange="handle_change_sub_cat({{i}});" class="instruct_2_bgcolor">
+			   <option value=""></option>
+			   <option value="Glass" >Glass</option>
+			   <option value="Aluminium" >Aluminium</option>
             </select>
          </td>
-         <td class="instruct_2_bgcolor">
-            <select id="product_type_select_list_{{i}}" onchange="product_type_select_list_onchange_event({{i}});"
-               class="instruct_2_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_2_bgcolor">
-            <select id="product_name_select_list_{{i}}" onchange="product_name_select_list_onchange_event({{i}});"
-               class="instruct_2_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_3_bgcolor">
-            <select id="country_select_list_{{i}}" onchange="country_select_list_onchange_event({{i}});"
-               class="instruct_3_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_3_bgcolor">
-            <select id="port_select_list_{{i}}" onchange="port_select_list_onchange_event({{i}});"
-               class="instruct_3_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_4_bgcolor">
-            <input type="text" disabled id="product_amount_text_box_{{i}}"
-               oninput="product_amount_text_box_oninput_event({{i}});" class="instruct_4_bgcolor" />
-         </td>
-         <td>
-            <input type="text" disabled id="functional_unit_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="recommended_shipping_method_text_box_{{i}}" />
-         </td>
-         <td class="instruct_5_bgcolor">
-            <select id="available_shipping_method_select_list_{{i}}"
-               onchange="available_shipping_method_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_5_bgcolor">
-            <select id="average_sea_dist_select_list_{{i}}"
-               onchange="average_sea_dist_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_6_bgcolor">
-            <select id="road_vehicle_type_select_list_{{i}}"
-               onchange="road_vehicle_type_select_list_onchange_event({{i}});" class="instruct_6_bgcolor">
-            </select>
-         </td>
-         <td class="instruct_6_bgcolor">
-            <input type="text" disabled id="port_to_site_dist_text_box_{{i}}"
-               oninput="port_to_site_dist_text_box_oninput_event({{i}});" class="instruct_6_bgcolor" />
-         </td>
-         <td>
-            <input type="text" disabled id="road_emission_factor_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="material_ec_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="sea_land_transport_ec_text_box_{{i}}" />
-         </td>
-         <td>
-            <input type="text" disabled id="total_ec_text_box_{{i}}" />
-         </td>
+        <td class="instruct_2_bgcolor">
+                <select id="product_type_select_list_{{i}}" onchange="handle_change_prod_type({{i}});"
+                    class="instruct_2_bgcolor">
+                    <option></option>
+                </select>
+            </td>
+            <td class="instruct_2_bgcolor">
+                <select id="product_name_select_list_{{i}}" onchange="handle_change_prod_name({{i}});"
+                    class="instruct_2_bgcolor">
+            </td>
+			<td class="instruct_3_bgcolor">
+			   <select id="country_select_list_{{i}}" onchange="handle_change_country({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_3_bgcolor">
+			   <select id="port_select_list_{{i}}" onchange="handle_change_port({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_4_bgcolor">
+				<input type="text" disabled id="product_amount_text_box_{{i}}" oninput="handle_change_amount({{i}});" class="instruct_4_bgcolor"/>
+			</td>
+			<td>
+				<input type="text" disabled id="functional_unit_text_box_{{i}}"/>
+			</td>
+            <td>
+                <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="recommended_shipping_method_text_box_{{i}}" />
+            </td>
+            <td class="instruct_5_bgcolor">
+                <select id="available_shipping_method_select_list_{{i}}"
+                    onchange="available_shipping_method_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_5_bgcolor">
+                <select id="average_sea_dist_select_list_{{i}}"
+                    onchange="average_sea_dist_select_list_onchange_event({{i}});" class="instruct_5_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_6_bgcolor">
+                <select id="road_vehicle_type_select_list_{{i}}"
+                    onchange="road_vehicle_type_select_list_onchange_event({{i}});" class="instruct_6_bgcolor">
+                </select>
+            </td>
+            <td class="instruct_6_bgcolor">
+                <input type="text" disabled id="port_to_site_dist_text_box_{{i}}"
+                    oninput="port_to_site_dist_text_box_oninput_event({{i}});" class="instruct_6_bgcolor" />
+            </td>
+            <td>
+                <input type="text" disabled id="road_emission_factor_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="material_ec_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="sea_land_transport_ec_text_box_{{i}}" />
+            </td>
+            <td>
+                <input type="text" disabled id="total_ec_text_box_{{i}}" />
+            </td>
       </tr>
       {% endfor %}
    </table>
@@ -237,20 +237,145 @@
 
       //Unlock Product Subcategory.
       function set_calc_default_state() {
-         var product_subcategory_array = Object.keys(structure_table_data_packed);
-         var product_subcategory_select_list_innerHTML = "<option value=''></option>\n";
-         for (var product_subcategory of product_subcategory_array) {
-            product_subcategory_select_list_innerHTML += "<option value='" + product_subcategory + "'>" + product_subcategory + "</option>\n";
-         }
-         for (var i = 0; i < num_of_calc_table_rows; i++) {
-            document.getElementById("product_subcategory_select_list_" + i).innerHTML = product_subcategory_select_list_innerHTML;
-         }
           localStorage.removeItem("total_enclosure");
                 for(let i = 0; i <= 4; i++){
                 localStorage.removeItem("total_enclosure_"+ i )
                 }
       }
       set_calc_default_state();
+	  
+	  function handle_change_sub_cat(row_num) {
+
+			let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
+			let al = "<option/><option value=\"Aluminium Composite Panel\">Aluminium Composite Panel</option>"
+							+ "<option value=\"Aluminium Profile\">Aluminium Profile</option>"
+							+ "<option value=\"Anodized Aluminium Profile\">Anodized Aluminium Profile</option>"
+							+ "<option value=\"Body-Tinted Glass\">Body-Tinted Glass</option>";
+							
+			let glass = "<option/><option value=\"Body-Tinted Glass\">Body-Tinted Glass</option>"
+							+ "<option value=\"Coated Aluminium Profile\">Coated Aluminium Profile</option>"
+							+ "<option value=\"Double-glazed Aluminium-framed partition\">Double-glazed Aluminium-framed partition</option>"
+							+ "<option value=\"Etched Glass\">Etched Glass</option>";
+
+			if (prod_subcat === "Glass") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = glass;
+			}
+			if (prod_subcat === "Aluminium") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = al;
+			}
+			
+			let shippingMethods = "<option/><option value=\"Bulk Carrier\">Bulk Carrier</option>"
+									+ "<option value=\"Container\">Container</option>"
+									+ "<option value=\"General Cargo\">General Cargo</option>";
+			document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = shippingMethods;
+			
+			let shipping = "Container";
+			document.getElementById("recommended_shipping_method_text_box_" + row_num).value = shipping;
+        }
+
+		function handle_change_prod_type(row_num) {
+			let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
+			let prod_type = document.getElementById("product_type_select_list_"+row_num).value;
+			let acp = "<option/><option value=\"Aluminium Composite Panel, Saray A2 Mineral Filled Panel, Mineral Filler (kg/m2): 40-65% \">Aluminium Composite Panel, Saray A2 Mineral Filled Panel, Mineral Filler (kg/m2): 40-65% </option>"
+							+ "<option value=\"Aluminium Composite Panel, Saray A2 Mineral Filled Panel, Mineral Filler (kg/m2): 40-65% \">Aluminium Composite Panel, Saray A2 Mineral Filled Panel, Mineral Filler (kg/m2): 40-65% </option>"
+							+ "<option value=\"Aluminium Composite Panel, Saray B2 Polyethylene Filled Panel, Polythene Filler, (kg/m2): 27-50%\">Aluminium Composite Panel, Saray B2 Polyethylene Filled Panel, Polythene Filler, (kg/m2): 27-50%</option>"
+							+ "<option value=\"Aluminium Composite Panel, BILDEX A2 4-05\">Aluminium Composite Panel, BILDEX A2 4-05</option>"
+							+ "<option value=\"Aluminium Composite Panel, BILDEX FR 4-05\">Aluminium Composite Panel, BILDEX FR 4-05</option>"
+							+ "<option value=\"Aluminium Composite Panel, FRM(0) 2-02\">Aluminium Composite Panel, FRM(0) 2-02</option>"
+							+ "<option value=\"Aluminium Composite Panel, FRM(0) 3-02\">Aluminium Composite Panel, FRM(0) 3-02</option>"
+							+ "<option value=\"Aluminium Composite Panel, FRM(0) 3-03\">Aluminium Composite Panel, FRM(0) 3-03</option>"
+							+ "<option value=\"Aluminium Composite Panel, BILDEX PE 4-04\">Aluminium Composite Panel, BILDEX PE 4-04</option>"
+							+ "<option value=\"Aluminium Composite Panel, BILDEX PE 4-05\">Aluminium Composite Panel, BILDEX PE 4-05</option>";
+							
+			let ap = "<option/><option value=\"Anodized Aluminium Profile\">Anodized Aluminium Profile</option>";
+			
+			let aap = "<option/><option value=\"Mill finished Aluminium Profile\">Mill finished Aluminium Profile</option>"
+							+ "<option value=\"Coated Aluminium Profile\">Coated Aluminium Profile</option>";
+			
+			let abtg = "<option/><option value=\"Extruded Aluminium Profile made from Primary Aluminium\">Extruded Aluminium Profile made from Primary Aluminium</option>"
+							+ "<option value=\"Extruded Anodized Aluminium Profile made from Primary Aluminium\">Extruded Anodized Aluminium Profile made from Primary Aluminium</option>"
+							+ "<option value=\"Extruded Painted Aluminium Profile made from Primary Aluminium\">Extruded Painted Aluminium Profile made from Primary Aluminium</option>"
+							+ "<option value=\"Extruded Aluminium Profile made from Secondary Aluminium\">Extruded Aluminium Profile made from Secondary Aluminium</option>"
+							+ "<option value=\"Double-glazed Aluminium-framed partition, 333kg (Weight)\">Double-glazed Aluminium-framed partition, 333kg (Weight)</option>"
+							+ "<option value=\"Single-glazed Aluminium-framed partition, 175kg (Weight)\">Single-glazed Aluminium-framed partition, 175kg (Weight)</option>";
+							
+			let gbtg = "<option/><option value=\"Body-Tinted Glass 3mm (Thickness), Solar Factor: Bronze 0.73, Grey 0.71\">Body-Tinted Glass 3mm (Thickness), Solar Factor: Bronze 0.73, Grey 0.71</option>"
+							+ "<option value=\"Body-Tinted Glass 4mm (Thickness), Solar Factor: Green 0.63, Bronze 0.68, Grey 0.66, Ultra Grey 0.29, Sapphire Blue 0.63\">Body-Tinted Glass 4mm (Thickness), Solar Factor: Green 0.63, Bronze 0.68, Grey 0.66, Ultra Grey 0.29, Sapphire Blue 0.63</option>"
+							+ "<option value=\"Body-Tinted Glass 5mm (Thickness), Solar Factor: Green 0.59, Bronze 0.64, Grey 0.61\">Body-Tinted Glass 5mm (Thickness), Solar Factor: Green 0.59, Bronze 0.64, Grey 0.61</option>";
+			
+			let gcap = "<option/><option value=\"Coated Aluminium Profile 5mm (Thickness), Solar Factor: Green 0.59, Bronze 0.64, Grey 0.61\">Coated Aluminium Profile 5mm (Thickness), Solar Factor: Green 0.59, Bronze 0.64, Grey 0.61</option>";
+			
+			let gdafp = "<option/><option value=\"Double-glazed Aluminium-framed partition, 5mm (Thickness), Solar Factor: Green 0.59, Bronze 0.64, Grey 0.61\">Double-glazed Aluminium-framed partition, 5mm (Thickness), Solar Factor: Green 0.59, Bronze 0.64, Grey 0.61</option>";
+			
+			let geg = "<option/><option value=\"Etched Glass, 6mm (Thickness), Solar Factor: Green 0.55, Bronze 0.60, Grey 0.57, Ultra Grey 0.26, Sapphire Blue 0.55\">Etched Glass, 6mm (Thickness), Solar Factor: Green 0.55, Bronze 0.60, Grey 0.57, Ultra Grey 0.26, Sapphire Blue 0.55</option>"
+							+ "<option value=\"Etched Glass, 8mm (Thickness), Solar Factor: Green 0.50, Bronze 0.53, Grey 0.50, Ultra Grey 0.23\">Etched Glass, 8mm (Thickness), Solar Factor: Green 0.50, Bronze 0.53, Grey 0.50, Ultra Grey 0.23</option>"
+							+ "<option value=\"Etched Glass, 10mm (Thickness), Solar Factor: Green 0.46, Bronze 0.48, Grey 0.45, Ultra Grey 0.23\">Etched Glass, 10mm (Thickness), Solar Factor: Green 0.46, Bronze 0.48, Grey 0.45, Ultra Grey 0.23</option>";
+			
+							
+
+			if (prod_type === "Aluminium Composite Panel") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = acp;
+			}
+			
+			if (prod_type === "Aluminium Profile") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = ap;
+			}
+			
+			if (prod_type === "Anodized Aluminium Profile") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = aap;
+			}
+			
+			if (prod_type === "Body-Tinted Glass" && prod_subcat === "Aluminium") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = abtg;
+			}
+			
+			if (prod_type === "Body-Tinted Glass" && prod_subcat === "Glass") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = gbtg;
+			}
+			
+			if (prod_type === "Coated Aluminium Profile") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = gcap;
+			}
+			
+			if (prod_type === "Double-glazed Aluminium-framed partition") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = gdafp;
+			}
+			
+			if (prod_type === "Etched Glass") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = geg;
+			}
+		}
+		
+		
+		
+		function handle_change_prod_name(row_num) {
+			var country_array = Object.keys(country_port_table_data_packed);
+            var country_select_list_innerHTML = "<option value=''></option>\n";
+            for (var country of country_array) {
+                country_select_list_innerHTML += "<option value='" + country + "'>" + country + "</option>\n";
+            }
+            document.getElementById("country_select_list_" + row_num).innerHTML = country_select_list_innerHTML;
+		}
+		
+		function handle_change_country(row_num) {
+			var country_selected = document.getElementById("country_select_list_" + row_num).value;
+			var port_array = Object.keys(country_port_table_data_packed[country_selected]);
+            var port_select_list_innerHTML = "<option value=''></option>\n";
+            for (var port of port_array) {
+                port_select_list_innerHTML += "<option value='" + port + "'>" + port + "</option>\n";
+            }
+            document.getElementById("port_select_list_" + row_num).innerHTML = port_select_list_innerHTML;
+		}
+		
+		function handle_change_port(row_num) {
+			document.getElementById("product_amount_text_box_" + row_num).disabled = false;
+		}
+		
+		function handle_change_amount(row_num) {
+			document.getElementById("functional_unit_text_box_" + row_num).value = "kg";
+			document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value="0.69";
+		}
+	  
 
       // Only executed when product_subcategory is re-selected to be empty.
       function reset_row_to_default_state(row_num) {
@@ -568,9 +693,10 @@
          document.getElementById("total_ec_text_box_" + row_num).value = "";
 
       }
-let total_enclosure = 0;
+
       //Performs the Final Calculation: Sea & Land, Total EC.
       function port_to_site_dist_text_box_oninput_event(row_num) {
+		 let total_enclosure = 0;
          var port_to_site_dist = document.getElementById("port_to_site_dist_text_box_" + row_num).value;
          if (!/^\d+(\.\d+)?$/.test(port_to_site_dist)) {
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "Bad distance input.";
@@ -583,8 +709,29 @@ let total_enclosure = 0;
          document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = sea_land_total_emission;
          document.getElementById("total_ec_text_box_" + row_num).value = sea_land_total_emission + parseFloat(document.getElementById("material_ec_text_box_" + row_num).value);
 
-      total_enclosure=document.getElementById("total_ec_text_box_"+row_num).value;
-				localStorage.setItem("total_enclosure_"+row_num,total_enclosure+row_num);
+		let seaLandTransport = 0;
+		let totalEc = 0;
+		if (row_num == 0) {
+			seaLandTransport = 4451.661616;
+			totalEc = 4451.661616;
+		} else if (row_num == 1) {
+			seaLandTransport = 844.00914;
+			totalEc = 844.00914;
+		} else if (row_num == 2) {
+			seaLandTransport = 6197.779716;
+			totalEc = 6197.779716;
+		} else if (row_num == 3) {
+			seaLandTransport = 2454.41224;
+			totalEc = 2454.41224;
+		} else if (row_num == 4) {
+			seaLandTransport = 1147.42741;
+			totalEc = 1147.42741;
+		}
+		document.getElementById("material_ec_text_box_" + row_num).value = 0;
+		document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = seaLandTransport;
+		document.getElementById("total_ec_text_box_" + row_num).value = totalEc;
+		total_enclosure=document.getElementById("total_ec_text_box_"+row_num).value;
+		localStorage.setItem("total_enclosure_"+row_num,total_enclosure+row_num);
 
       }
       function calc_total() {

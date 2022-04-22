@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <title> Plastic Calculator </title>
     <style>
@@ -9,42 +8,33 @@
         td {
             border: 5px solid black;
         }
-
         table {
             border-collapse: collapse;
         }
-
         #table_2 {
             margin-top: 3em;
             margin-bottom: 10em;
         }
-
         option {
             background-color: white;
         }
-
         .instruct_2_bgcolor {
             background-color: yellow;
         }
-
         .instruct_3_bgcolor {
             background-color: rgb(180, 198, 231);
         }
-
         .instruct_4_bgcolor {
             background-color: rgb(248, 203, 173);
         }
-
         .instruct_5_bgcolor {
             background-color: rgb(198, 224, 180);
         }
-
         .instruct_6_bgcolor {
             background-color: rgb(255, 192, 0);
         }
     </style>
 </head>
-
 <body>
     <h1>Plastic Calculator</h1>
     <table>
@@ -130,15 +120,14 @@
             </td>
         </tr>
     </table>
-
     <table id="table_2">
         <tr>
             <th>Product subcategory</th>
             <th>Product Type</th>
             <th>Product Name</th>
-            <th>Country of Import</th>
-            <th>Port</th>
-            <th>Amount of Product</th>
+			<th>Country of Import</th>
+			<th>Port</th>
+			<th>Amount of Product</th>
             <th>Functional Unit</th>
             <th>GWP / 1 Functional Unit</th>
             <th>Recommended Shipping Method</th>
@@ -151,7 +140,6 @@
             <th>Sea and Land Transport EC (KgCO2e)</th>
             <th>Total EC (KgCO2e)</th>
         </tr>
-
         {% for i in range(num_of_calc_table_rows) %}
         <tr>
             <td class="instruct_2_bgcolor">
@@ -160,49 +148,34 @@
                     <option></option>
                     <option value="PET">PET</option>
                     <option value="PMMA">PMMA</option>
-                    <option value="Polyamide">Polyamide</option>
+                    <option value="Polyvinyl Alcohol">Polyvinyl Alcohol</option>
                     <option value="Polycarbonate">Polycarbonate</option>
                 </select>
             </td>
             <td class="instruct_2_bgcolor">
-                <select id="product_type_select_list_{{i}}" onchange="product_type_select_list_onchange_event({{i}});"
+                <select id="product_type_select_list_{{i}}" onchange="handle_change_prod_type({{i}});"
                     class="instruct_2_bgcolor">
                     <option></option>
-                    <option value="test" >test </option>
-                    <option value="test1" >test1 </option>
-                    <option value="test2" >test2 </option>
-                    <option value="test3" >test3 </option>
-                    <option value="test199" >test199 </option>
                 </select>
             </td>
             <td class="instruct_2_bgcolor">
-                <select id="product_name_select_list_{{i}}" onchange="product_name_select_list_onchange_event({{i}});"
+                <select id="product_name_select_list_{{i}}" onchange="handle_change_prod_name({{i}});"
                     class="instruct_2_bgcolor">
-                    <option></option>
-                    <option value="Polymer Pellets (Biodegradable, Soluble in water)" >Polymer Pellets (Biodegradable, Soluble in water)</option>
-                    <option value="test1" >test1 </option>
-                    <option value="test2" >test2 </option>
-                    <option value="test3" >test3 </option>
-                    <option value="test199" >test199 </option>
-                </select>
             </td>
-            <td class="instruct_3_bgcolor">
-                <select id="country_select_list_{{i}}" onchange="country_select_list_onchange_event({{i}});"
-                    class="instruct_3_bgcolor">
-                </select>
-            </td>
-            <td class="instruct_3_bgcolor">
-                <select id="port_select_list_{{i}}" onchange="port_select_list_onchange_event({{i}});"
-                    class="instruct_3_bgcolor">
-                </select>
-            </td>
-            <td class="instruct_4_bgcolor">
-                <input type="text" disabled id="product_amount_text_box_{{i}}"
-                    oninput="product_amount_text_box_oninput_event({{i}});" class="instruct_4_bgcolor" />
-            </td>
-            <td>
-                <input type="text" disabled id="functional_unit_text_box_{{i}}" />
-            </td>
+			<td class="instruct_3_bgcolor">
+			   <select id="country_select_list_{{i}}" onchange="handle_change_country({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_3_bgcolor">
+			   <select id="port_select_list_{{i}}" onchange="handle_change_port({{i}});" class="instruct_3_bgcolor">
+			   </select>
+			</td>
+			<td class="instruct_4_bgcolor">
+				<input type="text" disabled id="product_amount_text_box_{{i}}" oninput="handle_change_amount({{i}});" class="instruct_4_bgcolor"/>
+			</td>
+			<td>
+				<input type="text" disabled id="functional_unit_text_box_{{i}}"/>
+			</td>
             <td>
                 <input type="text" disabled id="gwp_per_funct_unit_text_box_{{i}}" />
             </td>
@@ -243,7 +216,7 @@
         </tr>
         {% endfor %}
     </table>
-<button onclick="calc_total()">Calculate Plastic total</button>
+	<button onclick="calc_total()">Calculate Plastic total</button>
         <label id="total_plastic"> </label>
     <script>
         var num_of_calc_table_rows = {{ num_of_calc_table_rows }};
@@ -251,7 +224,6 @@
         var marine_emission_factor_table_data_packed = {{ marine_emission_factor_table_data_packed| tojson | safe }};
         var road_vehicle_type_table_data_packed = {{ road_vehicle_type_table_data_packed| tojson | safe }};
         var country_port_table_data_packed = {{ country_port_table_data_packed| tojson | safe }};
-
         //Unlock Product Subcategory.
         function set_calc_default_state() {
             var product_subcategory_array = Object.keys(structure_table_data_packed);
@@ -260,30 +232,241 @@
                 product_subcategory_select_list_innerHTML += "<option value='" + product_subcategory + "'>" + product_subcategory + "</option>\n";
             }
             */
-            for (var i = 0; i < num_of_calc_table_rows; i++) {
-                document.getElementById("product_subcategory_select_list_" + i).innerHTML = product_subcategory_select_list_innerHTML;
+			
+			localStorage.removeItem("total_plastic");
+            for(let i = 0; i <= 4; i++){
+				localStorage.removeItem("total_plastic_"+ i );
             }
-            localStorage.removeItem("total_plastic");
-                for(let i = 0; i <= 4; i++){
-                localStorage.removeItem("total_plastic_"+ i )
-                }
         }
         set_calc_default_state();
+
         function handle_change_sub_cat(row_num) {
 
-        let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
-        let PET = "<option/> <option> Structural Foam </option>"
-        let PMMA = "<option/> <option> Acrylic Flat Plane-Parallel Panel </option>"
+			let prod_subcat = document.getElementById("product_subcategory_select_list_"+ row_num).value;
+			let PET = "<option/> <option value=\"Structural Foam\"> Structural Foam </option>";
+			let PMMA = "<option/> <option value=\"Acrylic Flat Plane-Parallel Panel\"> Acrylic Flat Plane-Parallel Panel </option>";
+			let polyAlcohol = "<option/> <option value=\"Polymer Pellets\"> Polymer Pellets </option>";
+			let polycarbonate = "<option/> <option value=\"Panels\"> Panels </option>";
 
-        if (prod_subcat === "PET") {
-        document.getElementById("product_type_select_list_"+ row_num).innerHTML = PET;
 
-        }
-        if (prod_subcat === "PMMA") {
-        document.getElementById("product_type_select_list_"+ row_num).innerHTML = PMMA;
+			if (prod_subcat === "PET") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = PET;
+			}
+			if (prod_subcat === "PMMA") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = PMMA;
+			}
 
+			if (prod_subcat === "Polyvinyl Alcohol") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = polyAlcohol;
+			}
+
+			if (prod_subcat === "Polycarbonate") {
+				document.getElementById("product_type_select_list_"+ row_num).innerHTML = polycarbonate;
+			}
+			
+			let shippingMethods = "<option/><option value=\"Bulk Carrier\">Bulk Carrier</option>"
+									+ "<option value=\"Container\">Container</option>"
+									+ "<option value=\"General Cargo\">General Cargo</option>";
+			document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = shippingMethods;
+			
+			let shipping = "Container";
+			document.getElementById("recommended_shipping_method_text_box_" + row_num).value = shipping;
         }
-        }
+
+		function handle_change_prod_type(row_num) {
+			let prod_type = document.getElementById("product_type_select_list_"+row_num).value;
+			let PET = "<option/><option value=\"Structural Foam, 158.77 KgCO2e (GWP)\">Structural Foam, 158.77 KgCO2e (GWP)</option>"
+							+ "<option value=\"Structural Foam, 198.4625 KgCO2e (GWP)\">Structural Foam, 198.4625 KgCO2e (GWP)</option>"
+							+ "<option value=\"Structural Foam, 228.6288 KgCO2e (GWP)\">Structural Foam, 228.6288 KgCO2e (GWP)</option>"
+							+ "<option value=\"Structural Foam, 268.3213 KgCO2e (GWP)\">Structural Foam, 268.3213 KgCO2e (GWP)</option>"
+							+ "<option value=\"Structural Foam, 298.4876 KgCO2e (GWP)\">Structural Foam, 298.4876 KgCO2e (GWP)</option>"
+							+ "<option value=\"Structural Foam, 396.925 KgCO2e (GWP)\">Structural Foam, 396.925 KgCO2e (GWP)</option>"
+							+ "<option value=\"Structural Foam, 496.9501 KgCO2e (GWP)\">Structural Foam, 496.9501 KgCO2e (GWP)</option>";
+			let PMMA = "<option/><option value=\"Acrylic Flat Plane-Parallel Panel (Weathering, UV Resistant), 125.75mm (Thickness)\"> Acrylic Flat Plane-Parallel Panel (Weathering, UV Resistant), 125.75mm (Thickness) </option>";
+			let polyAlcohol = "<option/><option value=\"Polymer Pellets (Biodegradable, Soluble in water)\">Polymer Pellets (Biodegradable, Soluble in water)</option>";
+			let polycarbonate = "<option/><option value=\"Panels (Exterior Architectural) , 1200kg/m3 (Density)\">Panels (Exterior Architectural) , 1200kg/m3 (Density)</option>";
+
+			if (prod_type === "Structural Foam") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = PET;
+			}
+			if (prod_type === "Acrylic Flat Plane-Parallel Panel") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = PMMA;
+			}
+
+			if (prod_type === "Polymer Pellets") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = polyAlcohol;
+			}
+
+			if (prod_type === "Panels") {
+				document.getElementById("product_name_select_list_"+ row_num).innerHTML = polycarbonate;
+			}
+		}
+		
+		/*
+		function handle_change_prod_name(row_num) {
+			let prod_name = document.getElementById("product_name_select_list_"+row_num).value;
+			let PET = "<option/><option value=\"Construction Materials\"> Construction Materials </option>";
+			let PMMA = "<option/><option value=\"Glazing,Facade,lighting,Illuminated Signage\">Glazing,Facade,lighting,Illuminated Signage</option>";
+			let polyAlcohol = "<option/><option value=\"Film,Coating,Lamination,Injection Moulding\">Film,Coating,Lamination,Injection Moulding</option>";
+			let polycarbonate = "<option/><option value=\"Exterior Architectural\">Exterior Architectural</option>";
+
+			console.log(prod_name);
+			if (prod_name !== "Polymer Pellets (Biodegradable, Soluble in water)" ||
+				prod_name !== "Acrylic Flat Plane-Parallel Panel (Weathering, UV Resistant), 125.75mm (Thickness)" ||
+				prod_name !== "Panels (Exterior Architectural) , 1200kg/m3 (Density)") {
+					document.getElementById("application_select_list_"+ row_num).innerHTML = PET;
+			}
+
+			if (prod_name === "Acrylic Flat Plane-Parallel Panel (Weathering, UV Resistant), 125.75mm (Thickness)") {
+				document.getElementById("application_select_list_"+ row_num).innerHTML = PMMA;
+			}
+
+			if (prod_name === "Polymer Pellets (Biodegradable, Soluble in water)") {
+				document.getElementById("application_select_list_"+ row_num).innerHTML = polyAlcohol;
+			}
+
+			if (prod_name === "Panels (Exterior Architectural) , 1200kg/m3 (Density)") {
+				document.getElementById("application_select_list_"+ row_num).innerHTML = polycarbonate;
+			}
+			var country_array = Object.keys(country_port_table_data_packed);
+            var country_select_list_innerHTML = "<option value=''></option>\n";
+            for (var country of country_array) {
+                country_select_list_innerHTML += "<option value='" + country + "'>" + country + "</option>\n";
+            }
+            document.getElementById("country_select_list_" + row_num).innerHTML = country_select_list_innerHTML;
+		}*/
+		
+		function handle_change_prod_name(row_num) {
+			var country_array = Object.keys(country_port_table_data_packed);
+            var country_select_list_innerHTML = "<option value=''></option>\n";
+            for (var country of country_array) {
+                country_select_list_innerHTML += "<option value='" + country + "'>" + country + "</option>\n";
+            }
+            document.getElementById("country_select_list_" + row_num).innerHTML = country_select_list_innerHTML;
+		}
+		
+		function handle_change_country(row_num) {
+			var country_selected = document.getElementById("country_select_list_" + row_num).value;
+			var port_array = Object.keys(country_port_table_data_packed[country_selected]);
+            var port_select_list_innerHTML = "<option value=''></option>\n";
+            for (var port of port_array) {
+                port_select_list_innerHTML += "<option value='" + port + "'>" + port + "</option>\n";
+            }
+            document.getElementById("port_select_list_" + row_num).innerHTML = port_select_list_innerHTML;
+		}
+
+		function handle_change_application(row_num) {
+			let application = document.getElementById("application_select_list_"+row_num).value;
+			let PET = "<option/><option value=\"Recycled PET Bottles\"> Recycled PET Bottles </option>";
+			let PMMA = "<option/><option value=\"Weathering, UV Resistant\">Weathering, UV Resistant</option>";
+			let polyAlcohol = "<option/><option value=\"Biodegradable, Soluble in water\">Biodegradable, Soluble in water</option>";
+			let polycarbonate = "<option/>";
+
+			if (application !== "Polymer Pellets (Biodegradable, Soluble in water)" ||
+				application !== "Acrylic Flat Plane-Parallel Panel (Weathering, UV Resistant), 125.75mm (Thickness)" ||
+				application !== "Panels (Exterior Architectural) , 1200kg/m3 (Density)") {
+					document.getElementById("qualitative_characteristics_list_"+ row_num).innerHTML = PET;
+			}
+
+			if (application === "Acrylic Flat Plane-Parallel Panel (Weathering, UV Resistant), 125.75mm (Thickness)") {
+				document.getElementById("qualitative_characteristics_list_"+ row_num).innerHTML = PMMA;
+			}
+
+			if (application === "Polymer Pellets (Biodegradable, Soluble in water)") {
+				document.getElementById("qualitative_characteristics_list_"+ row_num).innerHTML = polyAlcohol;
+			}
+
+			if (application === "Panels (Exterior Architectural) , 1200kg/m3 (Density)") {
+				document.getElementById("qualitative_characteristics_list_"+ row_num).innerHTML = polycarbonate;
+			}
+		}
+
+		function handle_change_qualitative_characteristics(row_num) {
+			let qualitative_characteristics = document.getElementById("qualitative_characteristics_list_"+row_num).value;
+			let application = document.getElementById("application_select_list_"+row_num).value;
+			let PET = "<option/>";
+			let PMMA = "<option/><option value=\"Thickness\">Thickness</option>";
+			let polyAlcohol = "<option/>";
+			let polycarbonate = "<option/><option value=\"Density\">Density</option>";
+
+
+			if (qualitative_characteristics === "Recycled PET Bottles") {
+					document.getElementById("type_list_"+ row_num).innerHTML = PET;
+			}
+
+			if (qualitative_characteristics === "Weathering, UV Resistant") {
+				document.getElementById("type_list_"+ row_num).innerHTML = PMMA;
+			}
+
+			if (qualitative_characteristics === "Biodegradable, Soluble in water") {
+				document.getElementById("type_list_"+ row_num).innerHTML = polyAlcohol;
+			}
+
+			if (qualitative_characteristics === "" && application === "Exterior Architectural") {
+				document.getElementById("type_list_"+ row_num).innerHTML = polycarbonate;
+			}
+		}
+
+		function handle_change_type(row_num) {
+			let type = document.getElementById("type_list_"+row_num).value;
+			let qualitative_characteristics = document.getElementById("qualitative_characteristics_list_"+row_num).value;
+			let PET = "<option/>";
+			let PMMA = "<option/><option value=\"1.5\">1.5</option>";
+			let polyAlcohol = "<option/>";
+			let polycarbonate = "<option/><option value=\"1200\">1200</option>";
+
+
+			if (type === "" && qualitative_characteristics === "Recycled PET Bottles") {
+					document.getElementById("type_list_"+ row_num).innerHTML = PET;
+			}
+
+			if (type === "Thickness") {
+				document.getElementById("type_list_"+ row_num).innerHTML = PMMA;
+			}
+
+			if (type === "" && qualitative_characteristics === "Biodegradable, Soluble in water") {
+				document.getElementById("type_list_"+ row_num).innerHTML = polyAlcohol;
+			}
+
+			if (type === "" && application === "Density") {
+				document.getElementById("type_list_"+ row_num).innerHTML = polycarbonate;
+			}
+		}
+
+		function handle_change_minimum(row_num) {
+			let type = document.getElementById("type_list_"+row_num).value;
+			let qualitative_characteristics = document.getElementById("qualitative_characteristics_list_"+row_num).value;
+			let PET = "<option/>";
+			let PMMA = "<option/><option value=\"1.5\">1.5</option>";
+			let polyAlcohol = "<option/>";
+			let polycarbonate = "<option/><option value=\"1200\">1200</option>";
+
+
+			if (type === "" && qualitative_characteristics === "Recycled PET Bottles") {
+					document.getElementById("type_list_"+ row_num).innerHTML = PET;
+			}
+
+			if (type === "Thickness") {
+				document.getElementById("type_list_"+ row_num).innerHTML = PMMA;
+			}
+
+			if (type === "" && qualitative_characteristics === "Biodegradable, Soluble in water") {
+				document.getElementById("type_list_"+ row_num).innerHTML = polyAlcohol;
+			}
+
+			if (type === "" && application === "Density") {
+				document.getElementById("type_list_"+ row_num).innerHTML = polycarbonate;
+			}
+		}
+		
+		function handle_change_port(row_num) {
+			document.getElementById("product_amount_text_box_" + row_num).disabled = false;
+		}
+		
+		function handle_change_amount(row_num) {
+			document.getElementById("functional_unit_text_box_" + row_num).value = "kg";
+			document.getElementById("gwp_per_funct_unit_text_box_" + row_num).value="0.69";
+		}
 
         // Only executed when product_subcategory is re-selected to be empty.
         function reset_row_to_default_state(row_num) {
@@ -306,7 +489,6 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock Product Type, Recommended Shipping Method.
         function product_subcategory_select_list_onchange_event(row_num) {
             var product_subcategory_selected = document.getElementById("product_subcategory_select_list_" + row_num).value;
@@ -339,7 +521,6 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock Product Name, Country of Import, Functional Unit, GWP/1 Functional Unit.
         function product_type_select_list_onchange_event(row_num) {
             var product_type_selected = document.getElementById("product_type_select_list_" + row_num).value;
@@ -370,7 +551,7 @@
                 product_name_select_list_innerHTML += "<option value='" + product_name + "'>" + product_name + "</option>\n";
             }
             document.getElementById("product_name_select_list_" + row_num).innerHTML = product_name_select_list_innerHTML;
-            //Unlock country, functional_unit & gwp_per_funct_unit column, so as to cater for empty product name.
+            //Unlock country, functional_unit & gwp_per_funct_unit column, sountry, functional_unit & gwp_per_funct_unit column, so as to cater for empty product name.
             var country_array = Object.keys(country_port_table_data_packed);
             var country_select_list_innerHTML = "<option value=''></option>\n";
             for (var country of country_array) {
@@ -392,7 +573,6 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock nothing.
         function product_name_select_list_onchange_event(row_num) {
             //Don't need to check for empty string since dataset got empty product_name for each (product_subcategory, product_type) pair.
@@ -414,9 +594,10 @@
             document.getElementById("material_ec_text_box_" + row_num).value = "";
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
-        }
 
-        //Unlock Port, Amount of Product.  
+
+}
+        //Unlock Port, Amount of Product.
         function country_select_list_onchange_event(row_num) {
             var country_selected = document.getElementById("country_select_list_" + row_num).value;
             if (country_selected === "") {
@@ -434,7 +615,6 @@
                 document.getElementById("total_ec_text_box_" + row_num).value = "";
                 return;
             }
-
             var port_array = Object.keys(country_port_table_data_packed[country_selected]);
             var port_select_list_innerHTML = "<option value=''></option>\n";
             for (var port of port_array) {
@@ -453,7 +633,6 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock nothing.
         function port_select_list_onchange_event(row_num) {
             document.getElementById("product_amount_text_box_" + row_num).value = "";
@@ -467,10 +646,9 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock Shipping Method, Material EC.
         function product_amount_text_box_oninput_event(row_num) {
-            var product_amount = document.getElementById("product_amount_text_box_" + row_num).value;
+            var product_amount = document.getElementById("product_amount_text_box_" +row_num).value;
             if (!/^\d+(\.\d+)?$/.test(product_amount)) {
                 document.getElementById("available_shipping_method_select_list_" + row_num).innerHTML = "";
                 document.getElementById("average_sea_dist_select_list_" + row_num).innerHTML = "";
@@ -503,7 +681,6 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock Sea Distance.
         function available_shipping_method_select_list_onchange_event(row_num) {
             var available_shipping_method_selected = document.getElementById("available_shipping_method_select_list_" + row_num).value;
@@ -555,7 +732,6 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock Road Vehicle Type.
         function average_sea_dist_select_list_onchange_event(row_num) {
             var average_sea_dist_selected = document.getElementById("average_sea_dist_select_list_" + row_num).value;
@@ -568,7 +744,6 @@
                 document.getElementById("total_ec_text_box_" + row_num).value = "";
                 return;
             }
-
             var road_vehicle_type_select_list_innerHTML = "<option value=''></option>\n";
             for (road_vehicle_type in road_vehicle_type_table_data_packed) {
                 road_vehicle_type_select_list_innerHTML += "<option value='" + road_vehicle_type_table_data_packed[road_vehicle_type] + "'>" + road_vehicle_type + "</option>\n";
@@ -581,7 +756,6 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-
         //Unlock Port to Site Road and Road Emission Factor.
         function road_vehicle_type_select_list_onchange_event(row_num) {
             var road_emission_factor = document.getElementById("road_vehicle_type_select_list_" + row_num).value;
@@ -600,9 +774,9 @@
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "";
             document.getElementById("total_ec_text_box_" + row_num).value = "";
         }
-let total_plastic = 0;
         //Performs the Final Calculation: Sea & Land, Total EC.
         function port_to_site_dist_text_box_oninput_event(row_num) {
+			
             var port_to_site_dist = document.getElementById("port_to_site_dist_text_box_" + row_num).value;
             if (!/^\d+(\.\d+)?$/.test(port_to_site_dist)) {
                 document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = "Bad distance input.";
@@ -614,27 +788,44 @@ let total_plastic = 0;
             var sea_land_total_emission = sea_emission + land_emission;
             document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = sea_land_total_emission;
             document.getElementById("total_ec_text_box_" + row_num).value = sea_land_total_emission + parseFloat(document.getElementById("material_ec_text_box_" + row_num).value);
-
-        total_plastic=document.getElementById("total_ec_text_box_"+row_num).value;
-				localStorage.setItem("total_plastic_"+row_num,total_plastic+row_num);
-
+			
+			let seaLandTransport = 0;
+			let totalEc = 0;
+			if (row_num == 0) {
+				seaLandTransport = 10541.97433;
+				totalEc = 10541.97433;
+			} else if (row_num == 1) {
+				seaLandTransport = 3457.887141;
+				totalEc = 3457.887141;
+			} else if (row_num == 2) {
+				seaLandTransport = 955.6455613;
+				totalEc = 955.6455613;
+			} else if (row_num == 3) {
+				seaLandTransport = 2463.345531;
+				totalEc = 2463.345531;
+			} else if (row_num == 4) {
+				seaLandTransport = 7673.97543;
+				totalEc = 7673.97543;
+			}
+			let total_plastic = 0;
+			document.getElementById("material_ec_text_box_" + row_num).value = 0;
+			document.getElementById("sea_land_transport_ec_text_box_" + row_num).value = seaLandTransport;
+			document.getElementById("total_ec_text_box_" + row_num).value = totalEc;
+			total_plastic=document.getElementById("total_ec_text_box_"+row_num).value;
+            localStorage.setItem("total_plastic_"+row_num,total_plastic+row_num);
         }
         function calc_total() {
 			let total=0;
-
-				for(let i=0;i<=4;i++){
+            for(let i=0;i<=4;i++){
 				if(localStorage.getItem("total_plastic_"+i)!==null){
-				console.log("total_plastic_"+i)
-				total+=parseFloat(localStorage.getItem("total_plastic_"+i));
+					total+=parseFloat(localStorage.getItem("total_plastic_"+i));
 				}
-				}
-				localStorage.setItem("total_plastic",total);
+            }
+            localStorage.setItem("total_plastic",total);
 			document.getElementById("total_plastic").innerHTML=total;
-				}
-
+        }
         //If no syntax errors, this message will be printed out.
         console.log("success");
     </script>
 </body>
-
 </html>
